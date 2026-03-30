@@ -204,6 +204,7 @@ export default function Home() {
           >
             Si Se Puede
           </p>
+
         </section>
 
         {/* ── Product Tease ── */}
@@ -214,49 +215,112 @@ export default function Home() {
           <div className="max-w-lg mx-auto flex flex-col items-center text-center gap-14">
 
             {/* Obscured can */}
-            <div className="relative" style={{ width: 100, height: 180 }}>
-              {/* Base shape */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  borderRadius: '36px',
-                  background: 'linear-gradient(160deg, rgba(232,112,10,0.18) 0%, rgba(232,112,10,0.06) 50%, transparent 100%)',
-                  border: '1px solid rgba(232,112,10,0.22)',
-                }}
-              />
-              {/* Glare streak */}
+            <div className="relative flex items-center justify-center" style={{ width: 160, height: 260 }}>
+
+              {/* Outer glow bloom */}
               <div
                 className="absolute"
                 style={{
-                  top: '12%',
-                  left: '18%',
-                  width: '18%',
-                  height: '52%',
-                  background: 'linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 100%)',
+                  width: 160,
+                  height: 260,
+                  borderRadius: '60px',
+                  background: 'radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.07) 0%, transparent 70%)',
+                  filter: 'blur(18px)',
+                }}
+              />
+
+              {/* Mid glow ring */}
+              <div
+                className="absolute"
+                style={{
+                  width: 120,
+                  height: 220,
+                  borderRadius: '48px',
+                  boxShadow: '0 0 40px 8px rgba(255,255,255,0.06), 0 0 80px 20px rgba(232,112,10,0.08)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  background: 'linear-gradient(175deg, rgba(255,255,255,0.06) 0%, rgba(232,112,10,0.04) 40%, transparent 100%)',
+                }}
+              />
+
+              {/* Can body */}
+              <div
+                className="absolute"
+                style={{
+                  width: 90,
+                  height: 190,
+                  borderRadius: '32px',
+                  background: 'linear-gradient(170deg, rgba(255,255,255,0.12) 0%, rgba(200,190,180,0.06) 35%, rgba(10,9,9,0.6) 100%)',
+                  border: '1px solid rgba(255,255,255,0.14)',
+                  boxShadow: '0 0 24px 4px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.2)',
+                  backdropFilter: 'blur(4px)',
+                }}
+              />
+
+              {/* Primary glare streak — left */}
+              <div
+                className="absolute"
+                style={{
+                  top: '10%',
+                  left: 'calc(50% - 30px)',
+                  width: 14,
+                  height: '55%',
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.08) 60%, transparent 100%)',
+                  borderRadius: '50%',
+                  filter: 'blur(3px)',
+                }}
+              />
+
+              {/* Secondary glare streak — right edge */}
+              <div
+                className="absolute"
+                style={{
+                  top: '18%',
+                  left: 'calc(50% + 16px)',
+                  width: 5,
+                  height: '30%',
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 100%)',
                   borderRadius: '50%',
                   filter: 'blur(2px)',
                 }}
               />
-              {/* Blur overlay */}
+
+              {/* Label blur zone */}
               <div
-                className="absolute inset-0 flex items-center justify-center"
+                className="absolute flex items-center justify-center"
                 style={{
-                  borderRadius: '36px',
-                  backdropFilter: 'blur(6px)',
-                  background: 'rgba(10,9,9,0.45)',
+                  top: '30%',
+                  width: 70,
+                  height: 80,
+                  borderRadius: '8px',
+                  background: 'rgba(10,9,9,0.5)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255,255,255,0.06)',
                 }}
               >
                 <span
                   style={{
                     fontFamily: 'var(--font-display)',
-                    fontSize: '0.6rem',
-                    letterSpacing: '0.25em',
-                    color: 'rgba(232,112,10,0.5)',
+                    fontSize: '0.55rem',
+                    letterSpacing: '0.3em',
+                    color: 'rgba(255,255,255,0.25)',
                   }}
                 >
                   MAY 3
                 </span>
               </div>
+
+              {/* Bottom rim highlight */}
+              <div
+                className="absolute"
+                style={{
+                  bottom: '13%',
+                  width: 70,
+                  height: 6,
+                  borderRadius: '50%',
+                  background: 'rgba(255,255,255,0.08)',
+                  filter: 'blur(3px)',
+                }}
+              />
             </div>
 
             {/* Sensation copy */}
