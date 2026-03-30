@@ -58,16 +58,43 @@ export function SignupForm() {
 
   if (formState === 'success') {
     return (
-      <div className="text-center py-8">
+      <div className="flex flex-col items-center text-center gap-6 py-8 w-full max-w-md">
         <p
-          className="text-2xl font-bold mb-2"
+          className="text-4xl uppercase tracking-wide"
           style={{ fontFamily: 'var(--font-display)', color: 'var(--accent)' }}
         >
-          You&apos;re in.
+          You&apos;re on the list.
         </p>
-        <p style={{ color: 'var(--muted)' }} className="text-sm">
-          We&apos;ll reach out before things get started. Stay close.
-        </p>
+
+        <div className="flex flex-col gap-2">
+          <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground)' }}>
+            Watch{' '}
+            <a
+              href="https://www.instagram.com/sisepuede1.0/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'var(--accent)' }}
+            >
+              @sisepuede1.0
+            </a>{' '}
+            — that&apos;s where the tease drops.
+          </p>
+          {phone && smsConsent && (
+            <p className="text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
+              We&apos;ll text you the location on May 3rd.
+            </p>
+          )}
+        </div>
+
+        <a
+          href="https://www.instagram.com/sisepuede1.0/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-accent inline-flex items-center justify-center gap-2 rounded-lg px-8 py-3.5 text-sm font-semibold uppercase tracking-wide"
+        >
+          Follow on Instagram
+          <span>→</span>
+        </a>
       </div>
     );
   }

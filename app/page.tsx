@@ -83,10 +83,15 @@ export default function Home() {
           <CountdownTimer />
 
           {/* Form */}
-          <div id="signup" className="w-full flex flex-col items-center gap-6">
-            <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--muted)' }}>
-              Join the drop
-            </p>
+          <div id="signup" className="w-full flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-1">
+              <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--muted)' }}>
+                Join the drop
+              </p>
+              <p className="text-xs" style={{ color: 'var(--muted)', opacity: 0.6 }}>
+                Add your phone — we'll text you the location on May 3rd.
+              </p>
+            </div>
             <SignupForm />
           </div>
         </div>
@@ -199,6 +204,79 @@ export default function Home() {
           >
             Si Se Puede
           </p>
+        </section>
+
+        {/* ── Product Tease ── */}
+        <section
+          className="w-full py-24 px-6"
+          style={{ borderTop: '1px solid var(--border)' }}
+        >
+          <div className="max-w-lg mx-auto flex flex-col items-center text-center gap-14">
+
+            {/* Obscured can */}
+            <div className="relative" style={{ width: 100, height: 180 }}>
+              {/* Base shape */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  borderRadius: '36px',
+                  background: 'linear-gradient(160deg, rgba(232,112,10,0.18) 0%, rgba(232,112,10,0.06) 50%, transparent 100%)',
+                  border: '1px solid rgba(232,112,10,0.22)',
+                }}
+              />
+              {/* Glare streak */}
+              <div
+                className="absolute"
+                style={{
+                  top: '12%',
+                  left: '18%',
+                  width: '18%',
+                  height: '52%',
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 100%)',
+                  borderRadius: '50%',
+                  filter: 'blur(2px)',
+                }}
+              />
+              {/* Blur overlay */}
+              <div
+                className="absolute inset-0 flex items-center justify-center"
+                style={{
+                  borderRadius: '36px',
+                  backdropFilter: 'blur(6px)',
+                  background: 'rgba(10,9,9,0.45)',
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '0.6rem',
+                    letterSpacing: '0.25em',
+                    color: 'rgba(232,112,10,0.5)',
+                  }}
+                >
+                  MAY 3
+                </span>
+              </div>
+            </div>
+
+            {/* Sensation copy */}
+            <div className="flex flex-col gap-5">
+              <p
+                className="text-4xl sm:text-5xl uppercase leading-tight tracking-wide"
+                style={{ fontFamily: 'var(--font-display)', color: 'var(--foreground)' }}
+              >
+                Cold.{' '}
+                <span style={{ color: 'var(--accent)' }}>Sharp.</span>
+                <br />
+                Built for the last mile.
+              </p>
+              <p className="text-sm leading-relaxed max-w-xs mx-auto" style={{ color: 'var(--muted)' }}>
+                What it tastes like stays between us until May 3rd.
+                The first sip goes to the people who show up.
+              </p>
+            </div>
+
+          </div>
         </section>
 
         {/* ── La Bandera ── */}
