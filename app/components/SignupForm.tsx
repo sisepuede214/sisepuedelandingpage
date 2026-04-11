@@ -81,7 +81,7 @@ export function SignupForm() {
           </p>
           {phone && smsConsent && (
             <p className="text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
-              We&apos;ll text you the location on May 3rd.
+              We&apos;ll text you first when pre-orders open July 4th.
             </p>
           )}
         </div>
@@ -216,7 +216,7 @@ export function SignupForm() {
           if (formState !== 'loading') e.currentTarget.style.background = 'var(--accent)';
         }}
       >
-        {formState === 'loading' ? 'Sending...' : 'Count me in'}
+        {formState === 'loading' ? 'Sending...' : 'Get early access'}
       </button>
     </form>
   );

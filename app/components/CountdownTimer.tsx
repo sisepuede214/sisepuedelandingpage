@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { preorderOpensDate } from '@/lib/campaign';
 
-const TARGET = new Date('2026-05-03T00:00:00');
+const TARGET = preorderOpensDate();
 
 interface TimeLeft {
   days: number;
@@ -45,7 +46,7 @@ export function CountdownTimer() {
   ];
 
   return (
-    <div className="flex items-center gap-4 sm:gap-6" aria-label="Countdown to May 3rd">
+    <div className="flex items-center gap-4 sm:gap-6" aria-label="Countdown to July 4th pre-orders">
       {units.map((unit, i) => (
         <div key={unit.label} className="flex items-center gap-4 sm:gap-6">
           <div className="flex flex-col items-center gap-1">
