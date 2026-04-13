@@ -31,6 +31,11 @@ export function SignupForm() {
     setErrorMsg('');
 
     try {
+      const params = new URLSearchParams(window.location.search);
+      const sourceParam = params.get('source')?.trim() || '';
+      const source = sourceParam || 'landing_page';
+      const signup_phase = sourceParam ? 'event_day' : 'pre_event';
+
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -38,6 +43,8 @@ export function SignupForm() {
           email,
           phone: smsConsent && phone ? phone : undefined,
           sms_consent: smsConsent && Boolean(phone),
+          source,
+          signup_phase,
         }),
       });
 
@@ -135,9 +142,13 @@ export function SignupForm() {
         <label htmlFor="phone" className="text-xs font-medium uppercase tracking-widest" style={{ color: 'var(--muted)' }}>
           Phone <span style={{ color: 'var(--muted)' }}>(optional)</span>
         </label>
+        <p className="text-[11px] leading-snug -mt-0.5" style={{ color: 'var(--muted)' }}>
+          Use a US number (10 digits) or full international format with +country code so we can text you.
+        </p>
         <input
           id="phone"
           type="tel"
+          inputMode="tel"
           autoComplete="tel"
           placeholder="+1 (555) 000-0000"
           value={phone}
@@ -188,14 +199,14 @@ export function SignupForm() {
             )}
           </span>
           <span className="text-xs leading-relaxed" style={{ color: 'var(--muted)' }}>
-            Yes, text me updates about the event. Message &amp; data rates may apply. Reply STOP to unsubscribe.
+            Yes, text me updates about product.. Message &amp; data rates may apply. Reply STOP to unsubscribe.
           </span>
         </label>
       )}
 
       {/* Error message */}
       {formState === 'error' && (
-        <p className="text-xs" style={{ color: '#E8453C' }}>
+        <p className="text-xs" style={{ color: 'var(--danger)' }}>
           {errorMsg || 'Something went wrong. Please try again.'}
         </p>
       )}

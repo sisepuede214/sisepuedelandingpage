@@ -2,13 +2,21 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0909;
-  --foreground: #F5F0E8;
-  --accent: #E8700A;
-  --accent-hover: #FF8520;
-  --muted: #6b6560;
-  --border: #2a2522;
-  --surface: #141110;
+  /* Mexico flag / reference palette (source tokens) */
+  --mx-green: #006847;
+  --mx-red: #ce1126;
+  --mx-white: #fafafa;
+
+  /* Dark green-tinted “jersey” theme */
+  --background: #031208;
+  --foreground: #f8f4ec;
+  --accent: #ce1126;
+  --accent-hover: #ff2a3d;
+  --highlight: #006847;
+  --muted: #7a8f84;
+  --border: #1e4d3a;
+  --surface: #082015;
+  --danger: #ff8a8a;
 }
 
 @theme inline {
@@ -16,9 +24,11 @@
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
+  --color-highlight: var(--highlight);
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-surface: var(--surface);
+  --color-danger: var(--danger);
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-display: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
 }
@@ -38,12 +48,37 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--background);
+  color-scheme: dark;
 }
 
 body {
+  position: relative;
+  padding-top: 5px;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mexico tricolor — green | cream | red */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  z-index: 100;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    var(--mx-green) 0%,
+    var(--mx-green) 33.33%,
+    var(--foreground) 33.33%,
+    var(--foreground) 66.66%,
+    var(--mx-red) 66.66%,
+    var(--mx-red) 100%
+  );
 }

@@ -70,7 +70,7 @@ export default function Home() {
               style={{ fontFamily: 'var(--font-display)', color: 'var(--foreground)' }}
             >
               Hydration for the{' '}
-              <span style={{ color: 'var(--accent)' }}>cultura.</span>
+              <span style={{ color: 'var(--highlight)' }}>cultura.</span>
             </h1>
             <p
               className="text-xs font-semibold uppercase tracking-widest"
@@ -157,7 +157,7 @@ export default function Home() {
             </p>
             <p
               className="text-5xl sm:text-6xl uppercase tracking-wide leading-tight"
-              style={{ fontFamily: 'var(--font-display)', color: 'var(--accent)' }}
+              style={{ fontFamily: 'var(--font-display)', color: 'var(--highlight)' }}
             >
               the distance.
             </p>
