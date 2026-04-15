@@ -122,22 +122,25 @@ export default async function Home({ params }: PageProps) {
         >
           <figure className="w-full flex flex-col items-center gap-4">
             <div
-              className="relative w-full overflow-hidden rounded-lg"
-              style={{ aspectRatio: '16 / 10', background: 'var(--surface)' }}
+              className="relative w-full overflow-hidden sm:aspect-16/10"
+              style={{ background: 'var(--surface)' }}
             >
-              <Image
-                src="/la-bandera-community.jpg"
-                alt={m.community.imageAlt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 48rem"
+              <video
+                src="/osc.mp4"
+                aria-label={m.community.imageAlt}
+                className="w-full h-auto object-cover sm:absolute sm:inset-0 sm:h-full sm:w-full"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
               />
             </div>
-            <figcaption className="text-center max-w-md px-2">
+            {/* <figcaption className="text-center max-w-md px-2">
               <p className="text-sm italic leading-relaxed" style={{ color: 'var(--foreground)' }}>
                 {m.community.quote}
               </p>
-            </figcaption>
+            </figcaption> */}
           </figure>
         </section>
 
@@ -206,14 +209,30 @@ export default async function Home({ params }: PageProps) {
         >
           <figure className="w-full flex flex-col items-center gap-4">
             <div
-              className="relative w-full max-w-md mx-auto overflow-hidden rounded-lg aspect-4/5"
+              className="product-tease-glitch relative w-full max-w-md mx-auto overflow-hidden rounded-lg aspect-4/5"
               style={{ background: 'var(--surface)' }}
             >
               <Image
-                src="/sise-product-mockup.jpg"
+                src="/MOCKUP.png"
                 alt={m.product.imageAlt}
                 fill
-                className="object-contain"
+                className="product-tease-base object-contain"
+                sizes="(max-width: 768px) 100vw, 48rem"
+              />
+              <Image
+                src="/MOCKUP.png"
+                alt=""
+                aria-hidden="true"
+                fill
+                className="product-tease-layer product-tease-layer-green object-contain pointer-events-none select-none"
+                sizes="(max-width: 768px) 100vw, 48rem"
+              />
+              <Image
+                src="/MOCKUP.png"
+                alt=""
+                aria-hidden="true"
+                fill
+                className="product-tease-layer product-tease-layer-red object-contain pointer-events-none select-none"
                 sizes="(max-width: 768px) 100vw, 48rem"
               />
             </div>

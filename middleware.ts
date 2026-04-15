@@ -7,7 +7,7 @@ import {
   type AppLocale,
 } from './lib/i18n/locale';
 
-const STATIC_FILE = /\.(?:ico|png|jpg|jpeg|svg|gif|webp|woff2?|ttf|eot|txt|xml|js|map)$/i;
+const STATIC_FILE = /\.(?:ico|png|jpg|jpeg|svg|gif|webp|mp4|webm|woff2?|ttf|eot|txt|xml|js|map)$/i;
 
 function setLocaleCookie(response: NextResponse, locale: AppLocale) {
   response.cookies.set(LOCALE_COOKIE, locale, {
