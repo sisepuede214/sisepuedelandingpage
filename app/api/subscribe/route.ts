@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const KLAVIYO_API_BASE = 'https://a.klaviyo.com/api';
 const KLAVIYO_API_VERSION = '2024-02-15';
+const TOUCHPOINT_EVENT_NAME = 'landing_touchpoint';
 
 const DEFAULT_SOURCE = 'landing_page';
 const DEFAULT_SIGNUP_PHASE = 'pre_event';
@@ -13,6 +14,20 @@ interface SubscribeBody {
   sms_consent?: boolean;
   source?: string;
   signup_phase?: string;
+  language?: string;
+}
+
+function extractDuplicateProfileIdFromError(err: unknown): string | undefined {
+  if (!(err instanceof Error)) return undefined;
+  try {
+    const parsed = JSON.parse(err.message) as {
+      errors?: Array<{ meta?: { duplicate_profile_id?: unknown } }>;
+    };
+    const duplicateProfileId = parsed.errors?.[0]?.meta?.duplicate_profile_id;
+    return typeof duplicateProfileId === 'string' ? duplicateProfileId : undefined;
+  } catch {
+    return undefined;
+  }
 }
 
 /** E.164 for Klaviyo. US: 10 digits or 11 starting with 1; or already + and 10–15 digits total. */
@@ -47,12 +62,79 @@ function sanitizeTag(value: unknown, fallback: string): string {
   return t || fallback;
 }
 
-function profilePropertiesFromBody(body: SubscribeBody, smsOptIn: boolean): Record<string, string> {
+function sanitizeLanguage(value: unknown): 'en' | 'es' {
+  if (value === 'es' || value === 'en') return value;
+  return 'en';
+}
+
+function profilePropertiesFromBody(
+  body: SubscribeBody,
+  smsOptIn: boolean,
+  lastTouchAt: string,
+): Record<string, string> {
+  const source = sanitizeTag(body.source, DEFAULT_SOURCE);
+  const signupPhase = sanitizeTag(body.signup_phase, DEFAULT_SIGNUP_PHASE);
+  const language = sanitizeLanguage(body.language);
+
   return {
-    source: sanitizeTag(body.source, DEFAULT_SOURCE),
-    signup_phase: sanitizeTag(body.signup_phase, DEFAULT_SIGNUP_PHASE),
+    source,
+    signup_phase: signupPhase,
+    language,
     sms_marketing_opt_in: smsOptIn ? 'true' : 'false',
+    last_touchpoint: source,
+    last_touch_at: lastTouchAt,
   };
+}
+
+async function createTouchpointEvent(params: {
+  email: string;
+  phone?: string;
+  source: string;
+  signupPhase: string;
+  language: 'en' | 'es';
+  touchType: 'signup' | 'return_visit';
+  touchedAt: string;
+}) {
+  try {
+    const profileAttributes: Record<string, string> = { email: params.email };
+    if (params.phone) {
+      profileAttributes.phone_number = params.phone;
+    }
+
+    await klaviyoRequest('/events/', {
+      data: {
+        type: 'event',
+        attributes: {
+          properties: {
+            source: params.source,
+            signup_phase: params.signupPhase,
+            language: params.language,
+            touch_type: params.touchType,
+            touched_at: params.touchedAt,
+          },
+          time: params.touchedAt,
+          value: 0,
+          value_currency: 'USD',
+          metric: {
+            data: {
+              type: 'metric',
+              attributes: {
+                name: TOUCHPOINT_EVENT_NAME,
+              },
+            },
+          },
+          profile: {
+            data: {
+              type: 'profile',
+              attributes: profileAttributes,
+            },
+          },
+        },
+      },
+    });
+  } catch (err) {
+    console.warn('[subscribe] Touchpoint event skipped:', err);
+  }
 }
 
 async function klaviyoRequest(path: string, body: unknown, method: 'POST' | 'PATCH' = 'POST') {
@@ -129,10 +211,21 @@ async function upsertProfile(
     const data = await res.json();
     const duplicateId = data.errors?.[0]?.meta?.duplicate_profile_id as string | undefined;
     if (duplicateId) {
-      await patchProfile(duplicateId, {
-        properties,
-        ...(patchPhoneOnConflict ? { phone_number: patchPhoneOnConflict } : {}),
-      });
+      try {
+        await patchProfile(duplicateId, {
+          properties,
+          ...(patchPhoneOnConflict ? { phone_number: patchPhoneOnConflict } : {}),
+        });
+      } catch (err) {
+        const conflictDuplicateId = extractDuplicateProfileIdFromError(err);
+
+        if (conflictDuplicateId) {
+          await patchProfile(conflictDuplicateId, { properties });
+          return conflictDuplicateId;
+        }
+
+        throw err;
+      }
     }
     return duplicateId;
   }
@@ -152,7 +245,9 @@ async function subscribeProfilesToMarketing(
   listId: string,
   options: { phone?: string; smsOptIn: boolean },
 ) {
-  const consentedAt = new Date().toISOString();
+  const serverSafetyBackdateMs = 60_000;
+  const now = new Date(Date.now() - serverSafetyBackdateMs);
+  const consentedAt = now.toISOString().replace(/\.\d{3}Z$/, 'Z');
 
   const subscriptions: {
     email: { marketing: { consent: 'SUBSCRIBED'; consented_at: string } };
@@ -251,7 +346,9 @@ export async function POST(req: NextRequest) {
     }
 
     const listId = process.env.KLAVIYO_LIST_ID;
-    const properties = profilePropertiesFromBody(body, smsOptIn);
+    const lastTouchAt = new Date().toISOString();
+    const properties = profilePropertiesFromBody(body, smsOptIn, lastTouchAt);
+    const language = sanitizeLanguage(body.language);
     const phoneForKlaviyo = smsOptIn ? normalizedPhone : undefined;
     const patchPhoneOnConflict = phoneForKlaviyo;
 
@@ -260,8 +357,31 @@ export async function POST(req: NextRequest) {
       phone: phoneForKlaviyo,
       smsOptIn,
     });
+    await createTouchpointEvent({
+      email,
+      phone: phoneForKlaviyo,
+      source: properties.source,
+      signupPhase: properties.signup_phase,
+      language,
+      touchType: 'signup',
+      touchedAt: lastTouchAt,
+    });
 
-    return NextResponse.json({ message: 'Subscribed' }, { status: 200 });
+    return NextResponse.json(
+      {
+        message: 'Subscribed',
+        identity: {
+          email,
+          phone: phoneForKlaviyo,
+          source: properties.source,
+          signup_phase: properties.signup_phase,
+          language: properties.language,
+          last_touchpoint: properties.last_touchpoint,
+          last_touch_at: properties.last_touch_at,
+        },
+      },
+      { status: 200 },
+    );
   } catch (err) {
     console.error('[subscribe] Error:', err);
     return NextResponse.json({ message: 'Something went wrong. Please try again.' }, { status: 500 });

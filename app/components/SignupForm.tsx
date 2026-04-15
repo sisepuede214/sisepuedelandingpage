@@ -2,10 +2,13 @@
 
 import { useState, useRef } from 'react';
 import posthog from 'posthog-js';
+import { getSignupTrackingContext, writeStoredSignupIdentity } from './signupTracking';
+import { useLocaleMessages } from './LocaleProvider';
 
 type FormState = 'idle' | 'loading' | 'success' | 'error';
 
 export function SignupForm() {
+  const { messages: m, locale } = useLocaleMessages();
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [smsConsent, setSmsConsent] = useState(false);
@@ -31,10 +34,7 @@ export function SignupForm() {
     setErrorMsg('');
 
     try {
-      const params = new URLSearchParams(window.location.search);
-      const sourceParam = params.get('source')?.trim() || '';
-      const source = sourceParam || 'landing_page';
-      const signup_phase = sourceParam ? 'event_day' : 'pre_event';
+      const context = getSignupTrackingContext(window.location.search, locale);
 
       const res = await fetch('/api/subscribe', {
         method: 'POST',
@@ -43,20 +43,58 @@ export function SignupForm() {
           email,
           phone: smsConsent && phone ? phone : undefined,
           sms_consent: smsConsent && Boolean(phone),
-          source,
-          signup_phase,
+          source: context.source,
+          signup_phase: context.signup_phase,
+          language: context.language,
         }),
       });
+      const data = await res.json().catch(() => ({} as Record<string, unknown>));
 
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.message ?? 'Something went wrong');
+        throw new Error(
+          typeof data.message === 'string' ? data.message : m.signupForm.errorGeneric,
+        );
       }
+
+      const identity =
+        typeof data.identity === 'object' && data.identity !== null
+          ? (data.identity as Record<string, unknown>)
+          : {};
+      const nowIso = new Date().toISOString();
+
+      const storedLanguage =
+        identity.language === 'es' || identity.language === 'en'
+          ? identity.language
+          : locale;
+
+      writeStoredSignupIdentity({
+        email: typeof identity.email === 'string' ? identity.email : email.trim(),
+        phone:
+          typeof identity.phone === 'string'
+            ? identity.phone
+            : smsConsent && phone.trim()
+              ? phone.trim()
+              : undefined,
+        signed_up_at: nowIso,
+        last_touchpoint:
+          typeof identity.last_touchpoint === 'string'
+            ? identity.last_touchpoint
+            : context.source,
+        signup_phase:
+          typeof identity.signup_phase === 'string'
+            ? identity.signup_phase
+            : context.signup_phase,
+        language: storedLanguage,
+        last_touch_at:
+          typeof identity.last_touch_at === 'string'
+            ? identity.last_touch_at
+            : nowIso,
+      });
 
       posthog.capture('signup_success', { has_phone: Boolean(phone && smsConsent) });
       setFormState('success');
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Something went wrong';
+      const message = err instanceof Error ? err.message : m.signupForm.errorGeneric;
       posthog.capture('signup_error', { error: message });
       setErrorMsg(message);
       setFormState('error');
@@ -70,12 +108,12 @@ export function SignupForm() {
           className="text-4xl uppercase tracking-wide"
           style={{ fontFamily: 'var(--font-display)', color: 'var(--accent)' }}
         >
-          You&apos;re on the list.
+          {m.signupForm.successTitle}
         </p>
 
         <div className="flex flex-col gap-2">
           <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground)' }}>
-            Watch{' '}
+            {m.signupForm.successBodyBefore}{' '}
             <a
               href="https://www.instagram.com/sisepuede1.0/"
               target="_blank"
@@ -84,11 +122,11 @@ export function SignupForm() {
             >
               @sisepuede1.0
             </a>{' '}
-            — that&apos;s where the tease drops.
+            {m.signupForm.successBodyAfter}
           </p>
           {phone && smsConsent && (
             <p className="text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
-              We&apos;ll text you first when pre-orders open July 4th.
+              {m.signupForm.smsNote}
             </p>
           )}
         </div>
@@ -99,7 +137,7 @@ export function SignupForm() {
           rel="noopener noreferrer"
           className="btn-accent inline-flex items-center justify-center gap-2 rounded-lg px-8 py-3.5 text-sm font-semibold uppercase tracking-wide"
         >
-          Follow on Instagram
+          {m.signupForm.followInstagram}
           <span>→</span>
         </a>
       </div>
@@ -108,10 +146,9 @@ export function SignupForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-md">
-      {/* Email */}
       <div className="flex flex-col gap-1.5">
         <label htmlFor="email" className="text-xs font-medium uppercase tracking-widest" style={{ color: 'var(--muted)' }}>
-          Email *
+          {m.signupForm.emailLabel}
         </label>
         <input
           id="email"
@@ -137,13 +174,13 @@ export function SignupForm() {
         />
       </div>
 
-      {/* Phone */}
       <div className="flex flex-col gap-1.5">
         <label htmlFor="phone" className="text-xs font-medium uppercase tracking-widest" style={{ color: 'var(--muted)' }}>
-          Phone <span style={{ color: 'var(--muted)' }}>(optional)</span>
+          {m.signupForm.phoneLabel}{' '}
+          <span style={{ color: 'var(--muted)' }}>{m.signupForm.optional}</span>
         </label>
         <p className="text-[11px] leading-snug -mt-0.5" style={{ color: 'var(--muted)' }}>
-          Use a US number (10 digits) or full international format with +country code so we can text you.
+          {m.signupForm.phoneHint}
         </p>
         <input
           id="phone"
@@ -169,10 +206,9 @@ export function SignupForm() {
         />
       </div>
 
-      {/* SMS consent */}
       {phone && (
         <label className="flex items-start gap-3 cursor-pointer select-none">
-          <span className="relative mt-0.5 flex-shrink-0 h-5 w-5">
+          <span className="relative mt-0.5 shrink-0 h-5 w-5">
             <input
               type="checkbox"
               checked={smsConsent}
@@ -199,15 +235,14 @@ export function SignupForm() {
             )}
           </span>
           <span className="text-xs leading-relaxed" style={{ color: 'var(--muted)' }}>
-            Yes, text me updates about product.. Message &amp; data rates may apply. Reply STOP to unsubscribe.
+            {m.signupForm.smsConsent}
           </span>
         </label>
       )}
 
-      {/* Error message */}
       {formState === 'error' && (
         <p className="text-xs" style={{ color: 'var(--danger)' }}>
-          {errorMsg || 'Something went wrong. Please try again.'}
+          {errorMsg || m.signupForm.errorGeneric}
         </p>
       )}
 
@@ -227,7 +262,7 @@ export function SignupForm() {
           if (formState !== 'loading') e.currentTarget.style.background = 'var(--accent)';
         }}
       >
-        {formState === 'loading' ? 'Sending...' : 'Get early access'}
+        {formState === 'loading' ? m.signupForm.sending : m.signupForm.submit}
       </button>
     </form>
   );

@@ -2,8 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import { preorderOpensDate } from '@/lib/campaign';
+import type { Messages } from '@/lib/i18n/messages';
 
 const TARGET = preorderOpensDate();
+
+type CountdownLabels = Messages['countdown'];
 
 interface TimeLeft {
   days: number;
@@ -27,7 +30,8 @@ function pad(n: number) {
   return String(n).padStart(2, '0');
 }
 
-export function CountdownTimer() {
+export function CountdownTimer({ labels }: { labels: CountdownLabels }) {
+  // Avoid Date.now() during SSR / first paint — server and client clocks differ → hydration mismatch.
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
 
   useEffect(() => {
@@ -39,14 +43,14 @@ export function CountdownTimer() {
   if (!timeLeft) return null;
 
   const units = [
-    { value: timeLeft.days, label: 'Days' },
-    { value: timeLeft.hours, label: 'Hrs' },
-    { value: timeLeft.minutes, label: 'Mins' },
-    { value: timeLeft.seconds, label: 'Secs' },
+    { value: timeLeft.days, label: labels.days },
+    { value: timeLeft.hours, label: labels.hours },
+    { value: timeLeft.minutes, label: labels.minutes },
+    { value: timeLeft.seconds, label: labels.seconds },
   ];
 
   return (
-    <div className="flex items-center gap-4 sm:gap-6" aria-label="Countdown to July 4th pre-orders">
+    <div className="flex items-center gap-4 sm:gap-6" aria-label={labels.aria}>
       {units.map((unit, i) => (
         <div key={unit.label} className="flex items-center gap-4 sm:gap-6">
           <div className="flex flex-col items-center gap-1">

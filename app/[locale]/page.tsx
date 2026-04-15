@@ -1,6 +1,8 @@
 import Image from 'next/image';
-import { SignupForm } from './components/SignupForm';
-import { CountdownTimer } from './components/CountdownTimer';
+import { SignupGate } from '../components/SignupGate';
+import { CountdownTimer } from '../components/CountdownTimer';
+import { LanguageToggle } from '../components/LanguageToggle';
+import { getMessages } from '@/lib/i18n/messages';
 
 function InstagramIcon() {
   return (
@@ -12,56 +14,61 @@ function InstagramIcon() {
   );
 }
 
-export default function Home() {
+type PageProps = { params: Promise<{ locale: string }> };
+
+export default async function Home({ params }: PageProps) {
+  const { locale: raw } = await params;
+  const m = getMessages(raw);
+
+  const manifestoAccentLines = [m.manifesto.forYou, m.manifesto.forUs, m.manifesto.forCultura];
+
   return (
     <div className="flex flex-col min-h-screen" style={{ background: 'var(--background)' }}>
-
-      <nav className="flex items-center justify-between px-6 py-5 max-w-5xl mx-auto w-full">
+      <nav className="flex items-center justify-between px-6 py-5 max-w-5xl mx-auto w-full gap-4">
         <Image
           src="/sise-logo.png"
           alt="SISE"
           width={80}
           height={32}
-          style={{ filter: 'invert(1) brightness(2)' }}
+          style={{ filter: 'invert(1) brightness(2)', width: 'auto', height: 'auto' }}
           priority
         />
-        <a
-          href="https://www.instagram.com/sisepuede1.0/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Si Se Puede on Instagram"
-          className="transition-opacity hover:opacity-70"
-          style={{ color: 'var(--muted)' }}
-        >
-          <InstagramIcon />
-        </a>
+        <div className="flex items-center gap-4">
+          <LanguageToggle />
+          <a
+            href="https://www.instagram.com/sisepuede1.0/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={m.nav.instagramAria}
+            className="transition-opacity hover:opacity-70"
+            style={{ color: 'var(--muted)' }}
+          >
+            <InstagramIcon />
+          </a>
+        </div>
       </nav>
 
       <main className="flex-1 flex flex-col items-center px-6 pt-10 pb-0 w-full">
-
-        {/* Hero */}
         <div className="w-full max-w-lg flex flex-col items-center text-center gap-8">
-
-
           <p
             className="text-sm sm:text-base leading-snug max-w-sm"
             style={{ color: 'var(--foreground)' }}
           >
-            If you&apos;re seeing this, you&apos;re early.
+            {m.hero.early}
           </p>
 
           <p
             className="text-xs font-semibold uppercase tracking-widest max-w-xs leading-relaxed"
             style={{ color: 'var(--accent)' }}
           >
-            This is bigger than a drink. Pre-orders coming soon.
+            {m.hero.tagline}
           </p>
 
           <p
             className="text-base sm:text-lg leading-relaxed max-w-sm"
             style={{ color: 'var(--muted)' }}
           >
-            Built for those who carry the flag.
+            {m.hero.builtFor}
           </p>
 
           <div className="flex flex-col gap-3 w-full">
@@ -69,26 +76,25 @@ export default function Home() {
               className="text-6xl sm:text-7xl md:text-8xl leading-none tracking-wide uppercase"
               style={{ fontFamily: 'var(--font-display)', color: 'var(--foreground)' }}
             >
-              Hydration for the{' '}
-              <span style={{ color: 'var(--highlight)' }}>cultura.</span>
+              {m.hero.headlineBefore}{' '}
+              <span style={{ color: 'var(--highlight)' }}>{m.hero.headlineAccent}</span>
             </h1>
             <p
               className="text-xs font-semibold uppercase tracking-widest"
               style={{ color: 'var(--muted)' }}
             >
-              SISE · Electrolyte Drink
+              {m.hero.subline}
             </p>
           </div>
 
           <div className="flex flex-col items-center gap-4 w-full">
             <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--foreground)' }}>
-              Pre-orders open July 4.
+              {m.hero.preorderLine}
             </p>
-            <CountdownTimer />
+            <CountdownTimer labels={m.countdown} />
           </div>
         </div>
 
-        {/* Get early access */}
         <div
           id="signup"
           className="w-full max-w-lg flex flex-col items-center text-center gap-5 mt-16 scroll-mt-24"
@@ -97,20 +103,19 @@ export default function Home() {
             className="text-4xl sm:text-5xl uppercase tracking-wide leading-tight"
             style={{ fontFamily: 'var(--font-display)', color: 'var(--foreground)' }}
           >
-            Get early access
+            {m.signupSection.title}
           </h2>
           <div className="flex flex-col gap-1">
             <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground)' }}>
-              Enter your info. We&apos;ll text you first.
+              {m.signupSection.subtitle}
             </p>
             <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--muted)' }}>
-              The people here get it first.
+              {m.signupSection.subnote}
             </p>
           </div>
-          <SignupForm />
+          <SignupGate />
         </div>
 
-        {/* La Bandera / community */}
         <section
           className="w-full max-w-3xl mt-24 flex flex-col items-center gap-4 px-0"
           style={{ borderTop: '1px solid var(--border)', paddingTop: '4rem' }}
@@ -122,7 +127,7 @@ export default function Home() {
             >
               <Image
                 src="/la-bandera-community.jpg"
-                alt="La Bandera — community"
+                alt={m.community.imageAlt}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 48rem"
@@ -130,13 +135,12 @@ export default function Home() {
             </div>
             <figcaption className="text-center max-w-md px-2">
               <p className="text-sm italic leading-relaxed" style={{ color: 'var(--foreground)' }}>
-                &ldquo;This is bigger than a drink.&rdquo;
+                {m.community.quote}
               </p>
             </figcaption>
           </figure>
         </section>
 
-        {/* Manifesto */}
         <section
           className="w-full max-w-xl mt-24 flex flex-col items-center text-center gap-0 pb-8"
           style={{ borderTop: '1px solid var(--border)', paddingTop: '4rem' }}
@@ -145,7 +149,7 @@ export default function Home() {
             className="text-base sm:text-lg leading-relaxed mb-12 max-w-sm"
             style={{ color: 'var(--muted)' }}
           >
-            What you felt today, that&apos;s where this comes from.
+            {m.manifesto.intro}
           </p>
 
           <div className="flex flex-col gap-1 mb-12 w-full">
@@ -153,13 +157,13 @@ export default function Home() {
               className="text-5xl sm:text-6xl uppercase tracking-wide leading-tight"
               style={{ fontFamily: 'var(--font-display)', color: 'var(--foreground)' }}
             >
-              We&apos;re built to go
+              {m.manifesto.line1}
             </p>
             <p
               className="text-5xl sm:text-6xl uppercase tracking-wide leading-tight"
               style={{ fontFamily: 'var(--font-display)', color: 'var(--highlight)' }}
             >
-              the distance.
+              {m.manifesto.line2}
             </p>
           </div>
 
@@ -167,24 +171,24 @@ export default function Home() {
             className="text-2xl sm:text-3xl uppercase tracking-wide mb-4"
             style={{ fontFamily: 'var(--font-display)', color: 'var(--foreground)' }}
           >
-            To face hard things.
+            {m.manifesto.hard}
           </p>
           <p
             className="text-2xl sm:text-3xl uppercase tracking-wide mb-16"
             style={{ fontFamily: 'var(--font-display)', color: 'var(--foreground)' }}
           >
-            To keep showing up.
+            {m.manifesto.showing}
           </p>
 
           <p
             className="text-base sm:text-lg leading-relaxed mb-16 max-w-sm"
             style={{ color: 'var(--muted)' }}
           >
-            We made this to represent us and to fuel the journey.
+            {m.manifesto.body}
           </p>
 
           <div className="flex flex-col gap-2 mb-8">
-            {['For you.', 'For us.', 'For the cultura.'].map((line) => (
+            {manifestoAccentLines.map((line) => (
               <p
                 key={line}
                 className="text-3xl sm:text-4xl uppercase tracking-wide"
@@ -196,7 +200,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Product mockup */}
         <section
           className="w-full max-w-3xl mt-8 flex flex-col items-center gap-4 pb-8"
           style={{ borderTop: '1px solid var(--border)', paddingTop: '4rem' }}
@@ -208,18 +211,16 @@ export default function Home() {
             >
               <Image
                 src="/sise-product-mockup.jpg"
-                alt="SISE product"
+                alt={m.product.imageAlt}
                 fill
                 className="object-contain"
                 sizes="(max-width: 768px) 100vw, 48rem"
               />
             </div>
-            <figcaption>
-            </figcaption>
+            <figcaption />
           </figure>
         </section>
 
-        {/* Closing CTA */}
         <section
           className="w-full max-w-lg mt-16 mb-8 flex flex-col items-center text-center gap-8 py-16 px-6"
           style={{ borderTop: '1px solid var(--border)', background: 'var(--surface)' }}
@@ -229,25 +230,22 @@ export default function Home() {
               className="text-4xl sm:text-5xl uppercase tracking-wide leading-tight"
               style={{ fontFamily: 'var(--font-display)', color: 'var(--foreground)' }}
             >
-              You were here first.
+              {m.closing.title}
             </p>
             <p className="text-sm leading-relaxed max-w-xs mx-auto" style={{ color: 'var(--muted)' }}>
-              Don&apos;t miss what comes next.
+              {m.closing.subtitle}
             </p>
           </div>
           <a
             href="#signup"
             className="btn-accent inline-flex items-center justify-center gap-2 rounded-lg px-8 py-3.5 text-sm font-semibold uppercase tracking-wide"
           >
-            Get early access
+            {m.closing.cta}
             <span>↑</span>
           </a>
         </section>
 
-        <section
-          className="w-full py-8 px-6"
-          style={{ borderTop: '1px solid var(--border)' }}
-        >
+        <section className="w-full py-8 px-6" style={{ borderTop: '1px solid var(--border)' }}>
           <div className="max-w-lg mx-auto flex items-center justify-center">
             <a
               href="https://www.instagram.com/sisepuede1.0/"
@@ -257,7 +255,7 @@ export default function Home() {
               style={{ color: 'var(--muted)' }}
             >
               <InstagramIcon />
-              <span>Follow the journey</span>
+              <span>{m.follow.label}</span>
               <span
                 className="transition-transform group-hover:translate-x-0.5"
                 style={{ color: 'var(--accent)' }}
@@ -269,13 +267,9 @@ export default function Home() {
         </section>
       </main>
 
-      <footer
-        className="w-full py-5 px-6 text-center"
-        style={{ borderTop: '1px solid var(--border)' }}
-      >
+      <footer className="w-full py-5 px-6 text-center" style={{ borderTop: '1px solid var(--border)' }}>
         <p className="text-xs" style={{ color: 'var(--muted)' }}>
-          © 2026 Si Se Puede. By subscribing you agree to receive marketing communications.
-          You can unsubscribe at any time.
+          {m.footer.legal}
         </p>
       </footer>
     </div>
