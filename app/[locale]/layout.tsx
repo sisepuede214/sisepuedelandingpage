@@ -11,16 +11,16 @@ const SITE_METADATA: Record<
   en: {
     title: 'Si Se Puede — Hydration for the cultura',
     description:
-      'For people at the event. SISE electrolyte drink — pre-orders open July 4th. Get early access.',
+      'For people at the event. SISE electrolyte drink — pre-orders open May 5th. Get early access.',
     ogDescription:
-      'For people at the event. SISE electrolyte drink — pre-orders open July 4th. Get early access.',
+      'For people at the event. SISE electrolyte drink — pre-orders open May 5th. Get early access.',
   },
   es: {
     title: 'Si Se Puede — Hidratación para la cultura',
     description:
-      'Para la gente del evento. Bebida con electrolitos SISE — preventas el 4 de julio. Acceso anticipado.',
+      'Para la gente del evento. Bebida con electrolitos SISE — preventas el 5 de mayo. Acceso anticipado.',
     ogDescription:
-      'Para la gente del evento. Bebida con electrolitos SISE — preventas el 4 de julio. Acceso anticipado.',
+      'Para la gente del evento. Bebida con electrolitos SISE — preventas el 5 de mayo. Acceso anticipado.',
   },
 };
 
