@@ -30,7 +30,7 @@ export default async function Home({ params }: PageProps) {
           alt="SISE"
           width={80}
           height={32}
-          style={{ filter: 'invert(1) brightness(2)', width: 'auto', height: 'auto' }}
+          style={{ width: 'auto', height: 'auto' }}
           priority
         />
         <div className="flex items-center gap-4">

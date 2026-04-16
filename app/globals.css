@@ -3,20 +3,20 @@
 
 :root {
   /* Mexico flag / reference palette (source tokens) */
-  --mx-green: #006847;
-  --mx-red: #ce1126;
-  --mx-white: #fafafa;
+  --mx-green: #0f763c;
+  --mx-red: #c32d27;
+  --mx-white: #ffffff;
 
-  /* Dark green-tinted “jersey” theme */
-  --background: #031208;
-  --foreground: #f8f4ec;
-  --accent: #ce1126;
-  --accent-hover: #ff2a3d;
-  --highlight: #006847;
-  --muted: #7a8f84;
-  --border: #1e4d3a;
-  --surface: #082015;
-  --danger: #ff8a8a;
+  /* Light cream/white theme */
+  --background: #f4f0ec;
+  --foreground: #010101;
+  --accent: #c32d27;
+  --accent-hover: #a82420;
+  --highlight: #0f763c;
+  --muted: #4e5a54;
+  --border: #d8d0c8;
+  --surface: #ffffff;
+  --danger: #b4231d;
 }
 
 @theme inline {
@@ -49,7 +49,7 @@
 html {
   scroll-behavior: smooth;
   background: var(--background);
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
@@ -76,8 +76,8 @@ body::before {
     90deg,
     var(--mx-green) 0%,
     var(--mx-green) 33.33%,
-    var(--foreground) 33.33%,
-    var(--foreground) 66.66%,
+    var(--mx-white) 33.33%,
+    var(--mx-white) 66.66%,
     var(--mx-red) 66.66%,
     var(--mx-red) 100%
   );
@@ -110,10 +110,10 @@ body::before {
     filter: none;
   }
   78% {
-    filter: drop-shadow(-2px 0 0 rgba(0, 104, 71, 0.7)) drop-shadow(2px 0 0 rgba(206, 17, 38, 0.7));
+    filter: drop-shadow(-2px 0 0 rgba(15, 118, 60, 0.7)) drop-shadow(2px 0 0 rgba(195, 45, 39, 0.7));
   }
   81% {
-    filter: drop-shadow(2px 0 0 rgba(0, 104, 71, 0.7)) drop-shadow(-2px 0 0 rgba(206, 17, 38, 0.7));
+    filter: drop-shadow(2px 0 0 rgba(15, 118, 60, 0.7)) drop-shadow(-2px 0 0 rgba(195, 45, 39, 0.7));
   }
   84% {
     filter: saturate(1.15) contrast(1.08);
