@@ -26,10 +26,10 @@ export default async function Home({ params }: PageProps) {
     <div className="flex flex-col min-h-screen" style={{ background: 'var(--background)' }}>
       <nav className="flex items-center justify-between px-6 py-5 max-w-5xl mx-auto w-full gap-4">
         <Image
-          src="/sise-logo.png"
+          src="/BLACKLOGO.png"
           alt="SISE"
-          width={80}
-          height={32}
+          width={92}
+          height={37}
           style={{ width: 'auto', height: 'auto' }}
           priority
         />
@@ -205,13 +205,19 @@ export default async function Home({ params }: PageProps) {
 
         <section
           className="w-full max-w-3xl mt-8 flex flex-col items-center gap-4 pb-8"
-          style={{ borderTop: '1px solid var(--border)', paddingTop: '4rem' }}
+          style={{
+            borderTop: '1px solid var(--border)',
+            paddingTop: '4rem',
+            backgroundImage:
+              "linear-gradient(rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.72)), url('/SISELOGOblack.png')",
+            backgroundRepeat: 'repeat, repeat',
+            backgroundSize: 'auto, 190px auto',
+            backgroundPosition: '0 0, 0 20px',
+            backgroundBlendMode: 'normal, multiply',
+          }}
         >
           <figure className="w-full flex flex-col items-center gap-4">
-            <div
-              className="product-tease-glitch relative w-full max-w-md mx-auto overflow-hidden rounded-lg aspect-4/5"
-              style={{ background: 'var(--surface)' }}
-            >
+            <div className="product-tease-glitch relative w-full max-w-md mx-auto overflow-hidden rounded-lg aspect-4/5">
               <Image
                 src="/MOCKUP.png"
                 alt={m.product.imageAlt}
