@@ -7,6 +7,9 @@ import { LOCALE_COOKIE } from '@/lib/i18n/locale';
 export const metadata: Metadata = {
   title: 'Si Se Puede',
   description: 'SISE electrolyte drink — pre-orders and early access.',
+  icons: {
+    icon: '/favicon.svg',
+  },
 };
 
 export default async function RootLayout({

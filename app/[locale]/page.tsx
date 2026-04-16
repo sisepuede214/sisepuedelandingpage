@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { ProductTubTease } from '../components/ProductTubTease';
 import { SignupGate } from '../components/SignupGate';
 import { CountdownTimer } from '../components/CountdownTimer';
 import { LanguageToggle } from '../components/LanguageToggle';
@@ -24,15 +25,24 @@ export default async function Home({ params }: PageProps) {
 
   return (
     <div className="flex flex-col min-h-screen" style={{ background: 'var(--background)' }}>
-      <nav className="flex items-center justify-between px-6 py-5 max-w-5xl mx-auto w-full gap-4">
-        <Image
-          src="/BLACKLOGO.png"
-          alt="SISE"
-          width={92}
-          height={37}
-          style={{ width: 'auto', height: 'auto' }}
-          priority
-        />
+      <header
+        className="w-full border-b"
+        style={{ borderColor: 'var(--border)', background: 'var(--background)' }}
+      >
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10 md:py-14">
+          <Image
+            src="/BLACKLOGO.png"
+            alt="SISE"
+            width={920}
+            height={370}
+            className="w-full h-auto max-w-none object-contain object-center mx-auto max-h-[min(42vh,320px)] sm:max-h-[280px] md:max-h-[340px] lg:max-h-[380px] opacity-65"
+            sizes="100vw"
+            priority
+          />
+        </div>
+      </header>
+
+      <nav className="flex items-center justify-end px-6 py-5 max-w-5xl mx-auto w-full gap-4">
         <div className="flex items-center gap-4">
           <LanguageToggle />
           <a
@@ -87,6 +97,8 @@ export default async function Home({ params }: PageProps) {
             </p>
           </div>
 
+          <ProductTubTease variant="hero" imageAlt={m.product.imageAlt} />
+
           <div className="flex flex-col items-center gap-4 w-full">
             <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--foreground)' }}>
               {m.hero.preorderLine}
@@ -116,6 +128,8 @@ export default async function Home({ params }: PageProps) {
           <SignupGate />
         </div>
 
+        {/* <ProductTubTease variant="section" imageAlt={m.product.imageAlt} /> */}
+
         <section
           className="w-full max-w-3xl mt-24 flex flex-col items-center gap-4 px-0"
           style={{ borderTop: '1px solid var(--border)', paddingTop: '4rem' }}
@@ -126,7 +140,7 @@ export default async function Home({ params }: PageProps) {
               style={{ background: 'var(--surface)' }}
             >
               <video
-                src="/osc.mp4"
+                src="/C2211_1.mp4"
                 aria-label={m.community.imageAlt}
                 className="w-full h-auto object-cover sm:absolute sm:inset-0 sm:h-full sm:w-full"
                 autoPlay
@@ -201,49 +215,6 @@ export default async function Home({ params }: PageProps) {
               </p>
             ))}
           </div>
-        </section>
-
-        <section
-          className="w-full max-w-3xl mt-8 flex flex-col items-center gap-4 pb-8"
-          style={{
-            borderTop: '1px solid var(--border)',
-            paddingTop: '4rem',
-            backgroundImage:
-              "linear-gradient(rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.72)), url('/SISELOGOblack.png')",
-            backgroundRepeat: 'repeat, repeat',
-            backgroundSize: 'auto, 190px auto',
-            backgroundPosition: '0 0, 0 20px',
-            backgroundBlendMode: 'normal, multiply',
-          }}
-        >
-          <figure className="w-full flex flex-col items-center gap-4">
-            <div className="product-tease-glitch relative w-full max-w-md mx-auto overflow-hidden rounded-lg aspect-4/5">
-              <Image
-                src="/MOCKUP.png"
-                alt={m.product.imageAlt}
-                fill
-                className="product-tease-base object-contain"
-                sizes="(max-width: 768px) 100vw, 48rem"
-              />
-              <Image
-                src="/MOCKUP.png"
-                alt=""
-                aria-hidden="true"
-                fill
-                className="product-tease-layer product-tease-layer-green object-contain pointer-events-none select-none"
-                sizes="(max-width: 768px) 100vw, 48rem"
-              />
-              <Image
-                src="/MOCKUP.png"
-                alt=""
-                aria-hidden="true"
-                fill
-                className="product-tease-layer product-tease-layer-red object-contain pointer-events-none select-none"
-                sizes="(max-width: 768px) 100vw, 48rem"
-              />
-            </div>
-            <figcaption />
-          </figure>
         </section>
 
         <section

@@ -104,7 +104,7 @@ export function SignupGate() {
           {m.signupGate.subnote}
         </p>
       </div>
-      <a
+      {/* <a
         href="https://www.instagram.com/sisepuede1.0/"
         target="_blank"
         rel="noopener noreferrer"
@@ -112,7 +112,7 @@ export function SignupGate() {
       >
         {m.signupGate.followInstagram}
         <span>→</span>
-      </a>
+      </a> */}
     </div>
   );
 }
