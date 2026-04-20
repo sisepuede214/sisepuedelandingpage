@@ -3,6 +3,7 @@ import { ProductTubTease } from '../components/ProductTubTease';
 import { SignupGate } from '../components/SignupGate';
 import { CountdownTimer } from '../components/CountdownTimer';
 import { LanguageToggle } from '../components/LanguageToggle';
+import { TrackedLink } from '../components/TrackedLink';
 import { getMessages } from '@/lib/i18n/messages';
 
 function InstagramIcon() {
@@ -45,16 +46,18 @@ export default async function Home({ params }: PageProps) {
       <nav className="flex items-center justify-end px-6 py-5 max-w-5xl mx-auto w-full gap-4">
         <div className="flex items-center gap-4">
           <LanguageToggle />
-          <a
+          <TrackedLink
             href="https://www.instagram.com/sisepuede1.0/"
+            eventName="cta_instagram_clicked"
+            eventProperties={{ cta_location: 'header_nav' }}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={m.nav.instagramAria}
+            ariaLabel={m.nav.instagramAria}
             className="transition-opacity hover:opacity-70"
             style={{ color: 'var(--muted)' }}
           >
             <InstagramIcon />
-          </a>
+          </TrackedLink>
         </div>
       </nav>
 
@@ -228,19 +231,23 @@ export default async function Home({ params }: PageProps) {
               {m.closing.subtitle}
             </p>
           </div>
-          <a
+          <TrackedLink
             href="#signup"
+            eventName="cta_back_to_signup_clicked"
+            eventProperties={{ cta_location: 'closing_section' }}
             className="btn-accent inline-flex items-center justify-center gap-2 rounded-lg px-8 py-3.5 text-sm font-semibold uppercase tracking-wide"
           >
             {m.closing.cta}
             <span>↑</span>
-          </a>
+          </TrackedLink>
         </section>
 
         <section className="w-full py-8 px-6" style={{ borderTop: '1px solid var(--border)' }}>
           <div className="max-w-lg mx-auto flex items-center justify-center">
-            <a
+            <TrackedLink
               href="https://www.instagram.com/sisepuede1.0/"
+              eventName="cta_instagram_clicked"
+              eventProperties={{ cta_location: 'footer' }}
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-2.5 text-sm font-medium transition-opacity hover:opacity-70"
@@ -254,7 +261,7 @@ export default async function Home({ params }: PageProps) {
               >
                 →
               </span>
-            </a>
+            </TrackedLink>
           </div>
         </section>
       </main>

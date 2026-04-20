@@ -1,6 +1,7 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
+import posthog from 'posthog-js';
 import type { AppLocale } from '@/lib/i18n/locale';
 import { useLocaleMessages } from './LocaleProvider';
 
@@ -11,6 +12,10 @@ export function LanguageToggle() {
 
   async function switchTo(next: AppLocale) {
     if (next === locale) return;
+    posthog.capture('language_switched', {
+      from_locale: locale,
+      to_locale: next,
+    });
     await fetch('/api/locale', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

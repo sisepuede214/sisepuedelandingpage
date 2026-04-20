@@ -16,26 +16,32 @@ export function SignupForm() {
   const [errorMsg, setErrorMsg] = useState('');
   const hasStarted = useRef(false);
 
+  function buildSignupEventProps(extra?: Record<string, unknown>) {
+    const context = getSignupTrackingContext(window.location.search, locale);
+    return { ...context, ...(extra ?? {}) };
+  }
+
   function handleFirstInteraction() {
     if (!hasStarted.current) {
       hasStarted.current = true;
-      posthog.capture('signup_form_started');
+      posthog.capture('signup_form_started', buildSignupEventProps());
     }
   }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
+    const hasPhone = Boolean(phone && smsConsent);
+    const context = getSignupTrackingContext(window.location.search, locale);
     posthog.capture('signup_submitted', {
-      has_phone: Boolean(phone && smsConsent),
+      ...context,
+      has_phone: hasPhone,
     });
 
     setFormState('loading');
     setErrorMsg('');
 
     try {
-      const context = getSignupTrackingContext(window.location.search, locale);
-
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -91,11 +97,26 @@ export function SignupForm() {
             : nowIso,
       });
 
-      posthog.capture('signup_success', { has_phone: Boolean(phone && smsConsent) });
+      const identifiedEmail = typeof identity.email === 'string' ? identity.email : email.trim();
+      posthog.identify(identifiedEmail, {
+        email: identifiedEmail,
+        language: storedLanguage,
+        signup_phase:
+          typeof identity.signup_phase === 'string'
+            ? identity.signup_phase
+            : context.signup_phase,
+        last_touchpoint:
+          typeof identity.last_touchpoint === 'string'
+            ? identity.last_touchpoint
+            : context.source,
+        has_phone: hasPhone,
+      });
+
+      posthog.capture('signup_success', { ...context, has_phone: hasPhone });
       setFormState('success');
     } catch (err) {
       const message = err instanceof Error ? err.message : m.signupForm.errorGeneric;
-      posthog.capture('signup_error', { error: message });
+      posthog.capture('signup_error', { ...context, error: message });
       setErrorMsg(message);
       setFormState('error');
     }
@@ -118,6 +139,11 @@ export function SignupForm() {
               href="https://www.instagram.com/sisepuede1.0/"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() =>
+                posthog.capture('cta_instagram_clicked', {
+                  cta_location: 'signup_success_text',
+                })
+              }
               style={{ color: 'var(--accent)' }}
             >
               @sisepuede1.0
@@ -135,6 +161,11 @@ export function SignupForm() {
           href="https://www.instagram.com/sisepuede1.0/"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() =>
+            posthog.capture('cta_instagram_clicked', {
+              cta_location: 'signup_success_button',
+            })
+          }
           className="btn-accent inline-flex items-center justify-center gap-2 rounded-lg px-8 py-3.5 text-sm font-semibold uppercase tracking-wide"
         >
           {m.signupForm.followInstagram}

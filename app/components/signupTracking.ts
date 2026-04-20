@@ -12,6 +12,14 @@ export interface StoredSignupIdentity {
   last_touch_at: string;
 }
 
+export interface SignupUtmContext {
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+}
+
 export function getSignupContext(search: string): { source: string; signup_phase: string } {
   const params = new URLSearchParams(search);
   const sourceParam = params.get('source')?.trim() || '';
@@ -21,11 +29,28 @@ export function getSignupContext(search: string): { source: string; signup_phase
   };
 }
 
+function sanitizeUtmValue(value: string | null): string | undefined {
+  if (!value) return undefined;
+  const trimmed = value.trim();
+  return trimmed || undefined;
+}
+
+export function getUtmContext(search: string): SignupUtmContext {
+  const params = new URLSearchParams(search);
+  return {
+    utm_source: sanitizeUtmValue(params.get('utm_source')),
+    utm_medium: sanitizeUtmValue(params.get('utm_medium')),
+    utm_campaign: sanitizeUtmValue(params.get('utm_campaign')),
+    utm_term: sanitizeUtmValue(params.get('utm_term')),
+    utm_content: sanitizeUtmValue(params.get('utm_content')),
+  };
+}
+
 export function getSignupTrackingContext(
   search: string,
   language: AppLocale,
-): { source: string; signup_phase: string; language: AppLocale } {
-  return { ...getSignupContext(search), language };
+): { source: string; signup_phase: string; language: AppLocale } & SignupUtmContext {
+  return { ...getSignupContext(search), language, ...getUtmContext(search) };
 }
 
 export function readStoredSignupIdentity(): StoredSignupIdentity | null {
