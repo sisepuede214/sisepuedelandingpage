@@ -60,6 +60,15 @@ export default async function Home({ params }: PageProps) {
 
       <main className="flex-1 flex flex-col items-center px-6 pt-10 pb-0 w-full">
         <div className="w-full max-w-lg flex flex-col items-center text-center gap-8">
+          <Image
+            src="/SISELOGOblack.png"
+            alt="SISE logo"
+            width={220}
+            height={88}
+            className="w-44 sm:w-52 h-auto bg-none"
+            priority
+          />
+
           <p
             className="text-sm sm:text-base leading-snug max-w-sm"
             style={{ color: 'var(--foreground)' }}
@@ -67,19 +76,6 @@ export default async function Home({ params }: PageProps) {
             {m.hero.early}
           </p>
 
-          <p
-            className="text-xs font-semibold uppercase tracking-widest max-w-xs leading-relaxed"
-            style={{ color: 'var(--accent)' }}
-          >
-            {m.hero.tagline}
-          </p>
-
-          <p
-            className="text-base sm:text-lg leading-relaxed max-w-sm"
-            style={{ color: 'var(--muted)' }}
-          >
-            {m.hero.builtFor}
-          </p>
 
           <div className="flex flex-col gap-3 w-full">
             <h1
@@ -162,7 +158,7 @@ export default async function Home({ params }: PageProps) {
           className="w-full max-w-xl mt-24 flex flex-col items-center text-center gap-0 pb-8"
           style={{ borderTop: '1px solid var(--border)', paddingTop: '4rem' }}
         >
-          <p
+          {/* <p
             className="text-base sm:text-lg leading-relaxed mb-12 max-w-sm"
             style={{ color: 'var(--muted)' }}
           >
@@ -182,9 +178,9 @@ export default async function Home({ params }: PageProps) {
             >
               {m.manifesto.line2}
             </p>
-          </div>
+          </div> */}
 
-          <p
+          {/* <p
             className="text-2xl sm:text-3xl uppercase tracking-wide mb-4"
             style={{ fontFamily: 'var(--font-display)', color: 'var(--foreground)' }}
           >
@@ -202,7 +198,7 @@ export default async function Home({ params }: PageProps) {
             style={{ color: 'var(--muted)' }}
           >
             {m.manifesto.body}
-          </p>
+          </p> */}
 
           <div className="flex flex-col gap-2 mb-8">
             {manifestoAccentLines.map((line) => (

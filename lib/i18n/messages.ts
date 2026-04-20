@@ -9,8 +9,8 @@ const messagesEn = {
     languageToggle: 'Language',
   },
   hero: {
-    early: "If you're seeing this, you're early.",
-    tagline: 'This is bigger than a drink. Pre-orders coming soon.',
+    early: 'If you’re seeing this, you’re early.',
+    tagline: 'Hydration for the cultura.',
     builtFor: 'Built for those who carry the flag.',
     headlineBefore: 'Hydration for the',
     headlineAccent: 'cultura.',
