@@ -133,8 +133,8 @@ export default async function Home({ params }: PageProps) {
         {/* <ProductTubTease variant="section" imageAlt={m.product.imageAlt} /> */}
 
         <section
-          className="w-full max-w-3xl mt-24 flex flex-col items-center gap-4 px-0"
-          style={{ borderTop: '1px solid var(--border)', paddingTop: '4rem' }}
+          className="w-full max-w-3xl mt-2 flex flex-col items-center gap-2 px-0"
+          style={{ paddingTop: '4rem' }}
         >
           <figure className="w-full flex flex-col items-center gap-4">
             <div
@@ -161,8 +161,8 @@ export default async function Home({ params }: PageProps) {
         </section>
 
         <section
-          className="w-full max-w-xl mt-24 flex flex-col items-center text-center gap-0 pb-8"
-          style={{ borderTop: '1px solid var(--border)', paddingTop: '4rem' }}
+          className="w-full max-w-xl mt-10 flex flex-col items-center text-center gap-0 pb-2"
+          style={{ paddingTop: '3rem' }}
         >
           {/* <p
             className="text-base sm:text-lg leading-relaxed mb-12 max-w-sm"
@@ -220,8 +220,8 @@ export default async function Home({ params }: PageProps) {
         </section>
 
         <section
-          className="w-full max-w-lg mt-16 mb-8 flex flex-col items-center text-center gap-8 py-16 px-6"
-          style={{ borderTop: '1px solid var(--border)', background: 'var(--surface)' }}
+          className="w-full max-w-lg mt-12 mb-8 flex flex-col items-center text-center gap-8 py-12 px-6"
+          style={{ background: 'var(--surface)' }}
         >
           <div className="flex flex-col gap-4">
             <p
@@ -245,7 +245,7 @@ export default async function Home({ params }: PageProps) {
           </TrackedLink>
         </section>
 
-        <section className="w-full py-8 px-6" style={{ borderTop: '1px solid var(--border)' }}>
+        <section className="w-full py-8 px-6">
           <div className="max-w-lg mx-auto flex items-center justify-center">
             <TrackedLink
               href="https://www.instagram.com/sisepuede1.0/"
@@ -269,7 +269,7 @@ export default async function Home({ params }: PageProps) {
         </section>
       </main>
 
-      <footer className="w-full py-5 px-6 text-center" style={{ borderTop: '1px solid var(--border)' }}>
+      <footer className="w-full py-5 px-6 text-center">
         <p className="text-xs" style={{ color: 'var(--muted)' }}>
           {m.footer.legal}
         </p>
