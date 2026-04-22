@@ -26,7 +26,7 @@ export default async function Home({ params }: PageProps) {
 
   return (
     <div className="flex flex-col min-h-screen" style={{ background: 'var(--background)' }}>
-      <header
+      {/* <header
         className="w-full border-b"
         style={{ borderColor: 'var(--border)', background: 'var(--background)' }}
       >
@@ -36,14 +36,14 @@ export default async function Home({ params }: PageProps) {
             alt="SISE"
             width={920}
             height={370}
-            className="w-full h-auto max-w-none object-contain object-center mx-auto max-h-[min(42vh,320px)] sm:max-h-[280px] md:max-h-[340px] lg:max-h-[380px] opacity-65"
+            className="w-full h-auto max-w-none object-contain object-center mx-auto max-h-[min(42vh,320px)] sm:max-h-[280px] md:max-h-[340px] lg:max-h-[380px] "
             sizes="100vw"
             priority
           />
-        </div>
-      </header>
+        </div> 
+      </header> */}
 
-      <nav className="flex items-center justify-end px-6 py-5 max-w-5xl mx-auto w-full gap-4">
+      <nav className="flex items-center justify-center px-6 py-5 pb-1 max-w-5xl mx-auto w-full gap-4">
         <div className="flex items-center gap-4">
           <LanguageToggle />
           <TrackedLink
@@ -61,23 +61,32 @@ export default async function Home({ params }: PageProps) {
         </div>
       </nav>
 
-      <main className="flex-1 flex flex-col items-center px-6 pt-10 pb-0 w-full">
+      <main className="flex-1 flex flex-col items-center px-6 pt-2 pb-0 w-full">
         <div className="w-full max-w-lg flex flex-col items-center text-center gap-8">
+          <div>
+
           <Image
             src="/SISELOGOblack.png"
             alt="SISE logo"
-            width={220}
-            height={88}
-            className="w-44 sm:w-52 h-auto bg-none"
+            width={920}
+            height={370}
+            className="w-89 sm:w-64 md:w-72 h-auto bg-none"
             priority
-          />
+            />
+            <p
+              className="text-xs font-semibold uppercase tracking-widest"
+              style={{ color: 'var(--muted)' }}
+            >
+              {m.hero.subline}
+            </p>
+          </div>
 
-          <p
+          {/* <p
             className="text-sm sm:text-base leading-snug max-w-sm"
             style={{ color: 'var(--foreground)' }}
           >
             {m.hero.early}
-          </p>
+          </p> */}
 
 
           <div className="flex flex-col gap-3 w-full">
@@ -88,12 +97,6 @@ export default async function Home({ params }: PageProps) {
               {m.hero.headlineBefore}{' '}
               <span style={{ color: 'var(--highlight)' }}>{m.hero.headlineAccent}</span>
             </h1>
-            <p
-              className="text-xs font-semibold uppercase tracking-widest"
-              style={{ color: 'var(--muted)' }}
-            >
-              {m.hero.subline}
-            </p>
           </div>
 
           <ProductTubTease variant="hero" imageAlt={m.product.imageAlt} />

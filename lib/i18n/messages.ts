@@ -14,7 +14,7 @@ const messagesEn = {
     builtFor: 'Built for those who carry the flag.',
     headlineBefore: 'Hydration for the',
     headlineAccent: 'cultura.',
-    subline: 'SISE · Electrolyte Drink',
+    subline: 'Electrolyte Drink Mix',
     preorderLine: 'Pre-orders open May 5.',
   },
   countdown: {
@@ -95,7 +95,7 @@ const messagesEs = {
     builtFor: 'Hecho para quienes cargan la bandera.',
     headlineBefore: 'Hidratación para la',
     headlineAccent: 'cultura.',
-    subline: 'SISE · Bebida con electrolitos',
+    subline: 'Bebida en Polvo con electrolitos',
     preorderLine: 'Preventas abren el 5 de mayo.',
   },
   countdown: {

@@ -50,14 +50,14 @@ export function ProductTubTease({ imageAlt, variant }: ProductTubTeaseProps) {
     return (
       <div className="w-[calc(100%+3rem)] -mx-6 sm:mx-0 sm:w-full flex flex-col items-center">
         <div
-          className="w-full rounded-none px-0 py-5 flex flex-col items-center sm:max-w-[300px] sm:rounded-xl sm:px-4"
+          className="w-full rounded-none px-0 h-[500px] flex flex-col items-center sm:max-w-[300px] sm:rounded-xl sm:px-4 "
           style={{
             border: '1px solid var(--border)',
             backgroundImage:
-              "linear-gradient(rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.72)), url('/SISELOGOblack.png')",
-            backgroundRepeat: 'repeat, repeat',
-            backgroundSize: 'auto, 190px auto',
-            backgroundPosition: '0 0, 0 20px',
+              "linear-gradient(rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.72)), url('/BLACKLOGO.png')",
+            backgroundRepeat: 'repeat, space',
+            backgroundSize: '400px, 560px auto',
+            backgroundPosition: '0 0, center 5px',
             backgroundBlendMode: 'normal, multiply',
           }}
         >

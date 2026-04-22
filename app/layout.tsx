@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'Si Se Puede',
   description: 'SISE electrolyte drink — pre-orders and early access.',
   icons: {
-    icon: '/favicon.svg',
+    icon: '/favicon.ico',
   },
 };
 
