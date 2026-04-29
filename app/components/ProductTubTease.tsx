@@ -8,11 +8,13 @@ type ProductTubTeaseProps = {
 export function ProductTubTease({ imageAlt, variant }: ProductTubTeaseProps) {
   const glitchClassName =
     variant === 'hero'
-      ? 'product-tease-glitch relative w-full max-w-none sm:max-w-[272px] mx-auto overflow-hidden rounded-none sm:rounded-lg aspect-4/5'
+      ? 'product-tease-glitch relative w-full max-w-none sm:max-w-[340px] md:max-w-[420px] lg:max-w-[500px] mx-auto overflow-hidden rounded-none sm:rounded-lg aspect-4/5'
       : 'product-tease-glitch relative w-full max-w-md mx-auto overflow-hidden rounded-lg aspect-4/5';
 
   const sizes =
-    variant === 'hero' ? '(max-width: 640px) 100vw, 272px' : '(max-width: 768px) 100vw, 48rem';
+    variant === 'hero'
+      ? '(max-width: 640px) 100vw, (max-width: 768px) 340px, (max-width: 1024px) 420px, 500px'
+      : '(max-width: 768px) 100vw, 48rem';
 
   const figure = (
     <figure className="w-full flex flex-col items-center gap-4">
@@ -50,7 +52,7 @@ export function ProductTubTease({ imageAlt, variant }: ProductTubTeaseProps) {
     return (
       <div className="w-[calc(100%+3rem)] -mx-6 sm:mx-0 sm:w-full flex flex-col items-center">
         <div
-          className="w-full rounded-none px-0 h-[500px] flex flex-col items-center sm:max-w-[300px] sm:rounded-xl sm:px-4 "
+          className="w-full rounded-none px-0 h-[400px] sm:h-[520px] md:h-[600px] lg:h-[700px] flex flex-col items-center sm:max-w-[380px] md:max-w-[500px] lg:max-w-[580px] sm:rounded-xl sm:px-4"
           style={{
             border: '1px solid var(--border)',
             backgroundImage:
