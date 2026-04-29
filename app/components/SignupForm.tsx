@@ -190,7 +190,7 @@ export function SignupForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           onFocus={handleFirstInteraction}
-          className="w-full rounded-lg px-4 py-3 text-sm outline-none transition-all"
+          className="w-full rounded-lg px-4 py-3 text-base outline-none transition-all"
           style={{
             background: 'var(--surface)',
             border: '1px solid var(--border)',
@@ -222,7 +222,7 @@ export function SignupForm() {
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           onFocus={handleFirstInteraction}
-          className="w-full rounded-lg px-4 py-3 text-sm outline-none transition-all"
+          className="w-full rounded-lg px-4 py-3 text-base outline-none transition-all"
           style={{
             background: 'var(--surface)',
             border: '1px solid var(--border)',

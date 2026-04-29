@@ -50,6 +50,8 @@ html {
   scroll-behavior: smooth;
   background: var(--background);
   color-scheme: light;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -59,6 +61,8 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* Mexico tricolor — green | cream | red */

@@ -345,7 +345,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: 'Subscribed (dev mode)' }, { status: 200 });
     }
 
-    const listId = process.env.KLAVIYO_LIST_ID;
+    const isLoadTest = process.env.LOAD_TEST === 'true';
+    const listId = (isLoadTest ? process.env.KLAVIYO_TEST_LIST_ID : undefined) ?? process.env.KLAVIYO_LIST_ID;
     const lastTouchAt = new Date().toISOString();
     const properties = profilePropertiesFromBody(body, smsOptIn, lastTouchAt);
     const language = sanitizeLanguage(body.language);
