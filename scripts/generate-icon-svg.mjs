@@ -14,4 +14,4 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
 
 fs.writeFileSync(path.join(root, 'app', 'icon.svg'), svg);
 fs.writeFileSync(path.join(root, 'public', 'favicon.svg'), svg);
-// iPhone / apple-touch-icon: use `public/favicon.png` (see metadata.icons.apple in app/layout.tsx).
+// iPhone / apple-touch-icon: `public/S-FOR-SISE.png` — see metadata.icons.apple in app/layout.tsx.
