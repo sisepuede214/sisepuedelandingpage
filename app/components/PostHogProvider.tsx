@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import posthog from 'posthog-js';
 import { PostHogProvider as PHProvider } from 'posthog-js/react';
 import {
+  POSTHOG_CONSENT_STORAGE_KEY,
   readPostHogConsent,
   writePostHogConsent,
   type PostHogConsentStatus,
@@ -59,10 +60,34 @@ function TrackingConsentBanner({
 }
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
-  const [consent, setConsent] = useState<PostHogConsentStatus | null>(() => readPostHogConsent());
-  const [isBannerOpen, setIsBannerOpen] = useState(() => readPostHogConsent() === null);
+  /** false until client reads localStorage — avoids SSR/client mismatch on banner + PostHog init. */
+  const [consentReady, setConsentReady] = useState(false);
+  const [consent, setConsent] = useState<PostHogConsentStatus | null>(null);
+  const [isBannerOpen, setIsBannerOpen] = useState(false);
 
   useEffect(() => {
+    const c = readPostHogConsent();
+    setConsent(c);
+    setIsBannerOpen(c === null);
+    setConsentReady(true);
+  }, []);
+
+  useEffect(() => {
+    const onStorage = (e: StorageEvent) => {
+      if (e.key !== POSTHOG_CONSENT_STORAGE_KEY) return;
+      const raw = e.newValue;
+      if (raw === 'accepted' || raw === 'declined') {
+        setConsent(raw);
+        setIsBannerOpen(false);
+      }
+    };
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
+  }, []);
+
+  useEffect(() => {
+    if (!consentReady) return;
+
     const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
     const host = process.env.NEXT_PUBLIC_POSTHOG_HOST;
     if (!key) return;
@@ -83,7 +108,7 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
     } else {
       posthog.opt_out_capturing();
     }
-  }, [consent]);
+  }, [consent, consentReady]);
 
   function updateConsent(next: PostHogConsentStatus) {
     writePostHogConsent(next);
@@ -96,8 +121,9 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
       {children}
       <button
         type="button"
+        disabled={!consentReady}
         onClick={() => setIsBannerOpen(true)}
-        className="fixed bottom-4 left-4 z-40 rounded-md border px-3 py-2 text-xs font-semibold uppercase tracking-wide"
+        className="fixed bottom-4 left-4 z-40 rounded-md border px-3 py-2 text-xs font-semibold uppercase tracking-wide disabled:opacity-50"
         style={{ borderColor: 'var(--border)', background: 'var(--surface)', color: 'var(--muted)' }}
       >
         Privacy

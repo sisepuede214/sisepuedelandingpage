@@ -1,0 +1,19 @@
+{"sessionId":"4f6aae","hypothesisId":"A","location":"PostHogProvider.tsx:hydrateConsent","message":"client consent loaded","data":{"runId":"post-fix-verify","loadedConsent":"accepted","bannerWillShow":false,"didInitPostHog":false},"timestamp":1777700828510}
+{"sessionId":"4f6aae","hypothesisId":"B","location":"PostHogProvider.tsx:init","message":"posthog.init","data":{"consentForOptOutDefault":"accepted","opt_out_capturing_by_default":false},"timestamp":1777700828523}
+{"sessionId":"4f6aae","hypothesisId":"B","location":"PostHogProvider.tsx:consentEffect","message":"opt in/out","data":{"consent":"accepted","willOptIn":true},"timestamp":1777700828529}
+{"sessionId":"4f6aae","hypothesisId":"A","location":"PostHogProvider.tsx:hydrateConsent","message":"client consent loaded","data":{"runId":"post-fix-verify","loadedConsent":"accepted","bannerWillShow":false,"didInitPostHog":false},"timestamp":1777700849554}
+{"sessionId":"4f6aae","hypothesisId":"B","location":"PostHogProvider.tsx:init","message":"posthog.init","data":{"consentForOptOutDefault":"accepted","opt_out_capturing_by_default":false},"timestamp":1777700849565}
+{"sessionId":"4f6aae","hypothesisId":"B","location":"PostHogProvider.tsx:consentEffect","message":"opt in/out","data":{"consent":"accepted","willOptIn":true},"timestamp":1777700849569}
+{"sessionId":"4f6aae","hypothesisId":"A","location":"PostHogProvider.tsx:hydrateConsent","message":"client consent loaded","data":{"runId":"post-fix-verify","loadedConsent":"accepted","bannerWillShow":false,"didInitPostHog":false},"timestamp":1777700854262}
+{"sessionId":"4f6aae","hypothesisId":"B","location":"PostHogProvider.tsx:init","message":"posthog.init","data":{"consentForOptOutDefault":"accepted","opt_out_capturing_by_default":false},"timestamp":1777700854269}
+{"sessionId":"4f6aae","hypothesisId":"B","location":"PostHogProvider.tsx:consentEffect","message":"opt in/out","data":{"consent":"accepted","willOptIn":true},"timestamp":1777700854271}
+{"sessionId":"4f6aae","hypothesisId":"C","location":"PostHogProvider.tsx:privacyClick","message":"Privacy fab clicked","data":{},"timestamp":1777700860705}
+{"sessionId":"4f6aae","hypothesisId":"C","location":"PostHogProvider.tsx:bannerAcceptClick","message":"banner Accept clicked","data":{},"timestamp":1777700872338}
+{"sessionId":"4f6aae","hypothesisId":"C","location":"PostHogProvider.tsx:updateConsent","message":"before write + setState","data":{"next":"accepted","prevConsent":"accepted","prevBannerOpen":true},"timestamp":1777700872339}
+{"sessionId":"4f6aae","hypothesisId":"A","location":"PostHogProvider.tsx:hydrateConsent","message":"client consent loaded","data":{"runId":"post-fix-verify","loadedConsent":"accepted","bannerWillShow":false,"didInitPostHog":false},"timestamp":1777700909647}
+{"sessionId":"4f6aae","hypothesisId":"B","location":"PostHogProvider.tsx:init","message":"posthog.init","data":{"consentForOptOutDefault":"accepted","opt_out_capturing_by_default":false},"timestamp":1777700909663}
+{"sessionId":"4f6aae","hypothesisId":"B","location":"PostHogProvider.tsx:consentEffect","message":"opt in/out","data":{"consent":"accepted","willOptIn":true},"timestamp":1777700909672}
+{"sessionId":"4f6aae","hypothesisId":"C","location":"PostHogProvider.tsx:privacyClick","message":"Privacy fab clicked","data":{},"timestamp":1777700913556}
+{"sessionId":"4f6aae","hypothesisId":"C","location":"PostHogProvider.tsx:bannerAcceptClick","message":"banner Accept clicked","data":{},"timestamp":1777700914346}
+{"sessionId":"4f6aae","hypothesisId":"C","location":"PostHogProvider.tsx:updateConsent","message":"before write + setState","data":{"next":"accepted","prevConsent":"accepted","prevBannerOpen":true},"timestamp":1777700914346}
+{"sessionId":"4f6aae","hypothesisId":"C","location":"PostHogProvider.tsx:privacyClick","message":"Privacy fab clicked","data":{},"timestamp":1777700915131}
