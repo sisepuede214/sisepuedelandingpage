@@ -25,7 +25,7 @@ const messagesEn = {
     seconds: 'Secs',
   },
   signupSection: {
-    title: 'Get early access',
+    title: 'Tap in for your event photos',
     subtitle: "Enter your info. We'll text you first.",
     subnote: 'The people here get it first.',
   },
@@ -106,7 +106,7 @@ const messagesEs = {
     seconds: 'Seg',
   },
   signupSection: {
-    title: 'Acceso anticipado',
+    title: 'Conéctate y recibe tus fotos del evento',
     subtitle: 'Deja tus datos. Te escribimos primero.',
     subnote: 'Los de aquí lo saben primero.',
   },

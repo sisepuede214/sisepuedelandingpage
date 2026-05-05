@@ -89,7 +89,7 @@ export default async function Home({ params }: PageProps) {
           </p> */}
 
 
-          <div className="flex flex-col gap-3 w-full">
+          {/* <div className="flex flex-col gap-3 w-full">
             <h1
               className="text-6xl sm:text-7xl md:text-8xl leading-none tracking-wide uppercase"
               style={{ fontFamily: 'var(--font-display)', color: 'var(--foreground)' }}
@@ -99,14 +99,14 @@ export default async function Home({ params }: PageProps) {
             </h1>
           </div>
 
-          <ProductTubTease variant="hero" imageAlt={m.product.imageAlt} />
+          <ProductTubTease variant="hero" imageAlt={m.product.imageAlt} /> */}
 
-          <div className="flex flex-col items-center gap-4 w-full">
+          {/* <div className="flex flex-col items-center gap-4 w-full">
             <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--foreground)' }}>
               {m.hero.preorderLine}
             </p>
             <CountdownTimer labels={m.countdown} />
-          </div>
+          </div> */}
         </div>
 
         <div
