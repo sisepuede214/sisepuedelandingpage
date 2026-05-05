@@ -340,13 +340,15 @@ export async function POST(req: NextRequest) {
     const normalizedPhone = phone?.trim() ? normalizePhoneToE164(phone) : undefined;
     const smsOptIn = Boolean(sms_consent && normalizedPhone);
 
-    if (!process.env.KLAVIYO_API_KEY || !process.env.KLAVIYO_LIST_ID) {
+    const primaryListId = process.env.KLAVIYO_LIST_ID_POSTEVENT ?? process.env.KLAVIYO_LIST_ID;
+
+    if (!process.env.KLAVIYO_API_KEY || !primaryListId) {
       console.info('[subscribe] Klaviyo not configured — skipping. Email:', email);
       return NextResponse.json({ message: 'Subscribed (dev mode)' }, { status: 200 });
     }
 
     const isLoadTest = process.env.LOAD_TEST === 'true';
-    const listId = (isLoadTest ? process.env.KLAVIYO_TEST_LIST_ID : undefined) ?? process.env.KLAVIYO_LIST_ID;
+    const listId = (isLoadTest ? process.env.KLAVIYO_TEST_LIST_ID : undefined) ?? primaryListId;
     const lastTouchAt = new Date().toISOString();
     const properties = profilePropertiesFromBody(body, smsOptIn, lastTouchAt);
     const language = sanitizeLanguage(body.language);

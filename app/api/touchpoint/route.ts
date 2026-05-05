@@ -237,7 +237,11 @@ export async function POST(req: NextRequest) {
     const language = sanitizeLanguage(body.language);
     const touchedAt = new Date().toISOString();
 
-    if (!process.env.KLAVIYO_API_KEY || !process.env.KLAVIYO_LIST_ID) {
+    const hasAnyListConfig = Boolean(
+      process.env.KLAVIYO_LIST_ID_POSTEVENT ?? process.env.KLAVIYO_LIST_ID,
+    );
+
+    if (!process.env.KLAVIYO_API_KEY || !hasAnyListConfig) {
       return NextResponse.json({ message: 'Touchpoint tracked (dev mode)' }, { status: 200 });
     }
 

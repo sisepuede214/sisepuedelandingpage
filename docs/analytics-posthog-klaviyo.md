@@ -80,7 +80,7 @@ If you can only use **one breakdown**, prefer **`utm_source`** for campaign attr
 
 ### Where it runs
 
-- **Server-side only** in Next.js route handlers using **`KLAVIYO_API_KEY`** and **`KLAVIYO_LIST_ID`**.
+- **Server-side only** in Next.js route handlers using **`KLAVIYO_API_KEY`** and a subscription list ID (`KLAVIYO_LIST_ID_POSTEVENT` preferred, `KLAVIYO_LIST_ID` fallback).
 
 ### Signup — `POST /api/subscribe` (`app/api/subscribe/route.ts`)
 
@@ -115,7 +115,8 @@ When a known profile returns with updated **`source`**, **`signup_phase`**, or *
 | `NEXT_PUBLIC_POSTHOG_KEY`   | PostHog project API key (browser). |
 | `NEXT_PUBLIC_POSTHOG_HOST`  | PostHog API host (e.g. US or EU).  |
 | `KLAVIYO_API_KEY`           | Klaviyo private API key (server).  |
-| `KLAVIYO_LIST_ID`           | Target list for subscriptions.   |
+| `KLAVIYO_LIST_ID_POSTEVENT` | Preferred target list for new opt-ins. |
+| `KLAVIYO_LIST_ID`           | Fallback list for subscriptions if post-event list is unset. |
 
 See **`.env.example`** in the repo for placeholders.
 
