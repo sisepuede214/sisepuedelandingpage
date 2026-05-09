@@ -34,6 +34,7 @@ NEXT_PUBLIC_POSTHOG_HOST=https://eu.i.posthog.com
 | `landing_return_touch` | Returning signed-up visitor touchpoint | `source`, `signup_phase` |
 | `cta_instagram_clicked` | Instagram CTA links clicked | `cta_location` |
 | `cta_back_to_signup_clicked` | Back-to-signup CTA clicked | `cta_location` |
+| `cta_get_photos_clicked` | Primary CTA on `/[locale]/photos` | `source`, `cta_location` |
 | `language_switched` | User switches EN/ES | `from_locale`, `to_locale` |
 
 Notes:

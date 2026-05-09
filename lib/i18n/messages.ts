@@ -55,6 +55,14 @@ const messagesEn = {
   follow: {
     label: 'Follow the journey',
   },
+  photosPage: {
+    title: 'Event Photos',
+    subtitle: 'Thanks for pulling up. Tap below to open the event gallery.',
+    ctaTitle: 'Get your photos',
+    ctaLabel: 'Open photo gallery',
+    imageAltOne: 'Event photo highlight one',
+    imageAltTwo: 'Event photo highlight two',
+  },
   footer: {
     legal:
       '© 2026 Si Se Puede. By subscribing you agree to receive marketing communications. You can unsubscribe at any time.',
@@ -135,6 +143,14 @@ const messagesEs = {
   },
   follow: {
     label: 'Sigue el recorrido',
+  },
+  photosPage: {
+    title: 'Fotos del evento',
+    subtitle: 'Gracias por acompañarnos. Toca abajo para abrir la galería del evento.',
+    ctaTitle: 'Consigue tus fotos',
+    ctaLabel: 'Abrir galería',
+    imageAltOne: 'Foto destacada del evento uno',
+    imageAltTwo: 'Foto destacada del evento dos',
   },
   footer: {
     legal:
