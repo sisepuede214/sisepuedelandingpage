@@ -7,7 +7,7 @@ import { TrackedLink } from './TrackedLink';
 import { useLocaleMessages } from './LocaleProvider';
 
 const PHOTOS_TOUCHPOINT_SOURCE = 'event_photos_touchpoint';
-const PHOTOS_LINK_PLACEHOLDER = 'https://lightroom.adobe.com/gallery/05754eee74454c1fbf7ff228ef20a806/albums/9655e5772f384f9b96627ec10e6f597a/assets';
+const PHOTOS_LINK_PLACEHOLDER = 'https://egphotography86.pixieset.com/sisepuedecincodemayo/';
 
 export function EventPhotosTouchpoint() {
   const { locale, messages } = useLocaleMessages();
