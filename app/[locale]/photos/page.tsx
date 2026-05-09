@@ -64,7 +64,7 @@ export default async function PhotosPage({ params }: PageProps) {
         <section className="w-full max-w-4xl mt-10 flex flex-col items-stretch gap-6">
           <figure className="relative aspect-4/5 w-full overflow-hidden rounded-lg" style={{ background: 'var(--surface)' }}>
             <Image
-              src="/photoslandingpage/luchador.JPEG"
+              src="/photoslandingpage/Emannual_Luchador.jpg"
               alt={m.photosPage.imageAltOne}
               fill
               className="object-cover"
@@ -95,7 +95,7 @@ export default async function PhotosPage({ params }: PageProps) {
 
           <figure className="relative aspect-4/5 w-full overflow-hidden rounded-lg" style={{ background: 'var(--surface)' }}>
             <Image
-              src="/photoslandingpage/flag3.JPEG"
+              src="/photoslandingpage/Emanuel_Flag.jpg"
               alt={m.photosPage.imageAltTwo}
               fill
               className="object-cover"
