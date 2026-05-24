@@ -11,6 +11,9 @@ export const FOUNDERS_TOTAL = 240;
 export const FOUNDERS_SHOPIFY_URL =
   'https://www.sisepuedeshop.com/products/founders-240';
 
+export const FOUNDERS_GROUP_CHAT_URL =
+  'https://ig.me/j/AbbRc1hRH_cRwq-N/';
+
 const CACHE_SECONDS = 60;
 
 function clampFounderCount(count: number): number {

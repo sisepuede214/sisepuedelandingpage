@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { FounderChips } from '@/app/components/FounderChips';
-import { FounderBenefitIcon } from '@/app/components/founderBenefitIcons';
+import { FounderBenefitsGrid } from '@/app/components/FounderBenefitsGrid';
 import { FounderTracker } from '@/app/components/FounderTracker';
 import { FoundersHero } from '@/app/components/FoundersHero';
 import { FoundersPageFooter } from '@/app/components/FoundersPageFooter';
@@ -23,9 +23,6 @@ const DISPLAY_HEADING_STYLE = {
   fontFamily: 'var(--font-display)',
   color: 'var(--foreground)',
 } as const;
-const DISPLAY_SUBHEADING =
-  'text-2xl sm:text-3xl uppercase tracking-wide leading-tight' as const;
-
 type PageProps = { params: Promise<{ locale: string }> };
 
 /** Refresh founder count from Shopify about once per minute. */
@@ -110,34 +107,7 @@ export default async function FoundersPage({ params }: PageProps) {
           </div>
         </section>
 
-        <section
-          className="border-t py-12 px-5 sm:px-6 max-w-3xl mx-auto w-full"
-          style={{ borderColor: 'var(--border)' }}
-        >
-          <p
-            className="text-xs font-semibold uppercase tracking-widest mb-8"
-            style={{ color: 'var(--muted)' }}
-          >
-            {fp.benefits.label}
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {fp.benefits.items.map((item) => (
-              <div
-                key={item.icon}
-                className="rounded-lg border p-5 flex flex-col gap-3"
-                style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}
-              >
-                <FounderBenefitIcon name={item.icon} />
-                <h3 className={DISPLAY_SUBHEADING} style={DISPLAY_HEADING_STYLE}>
-                  {item.title}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <FounderBenefitsGrid label={fp.benefits.label} items={fp.benefits.items} />
 
         {!soldOut && (
           <section

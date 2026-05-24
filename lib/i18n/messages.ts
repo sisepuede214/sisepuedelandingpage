@@ -136,7 +136,8 @@ const messagesEn = {
         {
           icon: 'hash',
           title: 'Your Founder number',
-          description: 'Permanently assigned #001–240. Yours forever.',
+          description:
+            'Permanently assigned #001–240. You\'ll know your number when your order ships.',
         },
         {
           icon: 'rocket',
@@ -197,6 +198,37 @@ const messagesEn = {
       privacy: 'Privacy',
       unsubscribe: 'Unsubscribe',
       instagram: 'Instagram',
+    },
+  },
+  foundersWelcomePage: {
+    meta: {
+      title: 'Founders 240 — Welcome',
+      description:
+        "You're in. See your Founder perks and what happens next as we build SISE together.",
+      ogDescription: 'Welcome, Founder. Your perks and what comes next.',
+    },
+    hero: {
+      eyebrow: 'Founders 240',
+      headline: "You're in.",
+      subhead:
+        'Thank you for believing early. Here\'s what comes with your Founder spot.',
+      groupChatCta: 'Join the Founders group chat',
+      groupChatNote: 'Tap to join on Instagram — don\'t miss updates from the team.',
+    },
+    intro: {
+      label: 'What this is',
+      body1:
+        'Many of you have been part of this journey long before there was ever a product — through La Bandera 5K, running, community events, or personal relationships. Your support helped build this from the ground up.',
+      body2:
+        "Founders 240 is for people who believed in the mission before the finish line was visible. Nobody gets through something that hard alone — and we're building this together.",
+    },
+    benefits: {
+      label: 'Your Founder perks',
+    },
+    cta: {
+      label: 'Questions or updates?',
+      button: 'Message us on Instagram',
+      instagramHandle: '@sisepuede1.0',
     },
   },
 } as const;
@@ -335,7 +367,8 @@ const messagesEs = {
         {
           icon: 'hash',
           title: 'Tu número de Fundador',
-          description: 'Asignado permanentemente #001–240. Tuyo para siempre.',
+          description:
+            'Asignado permanentemente #001–240. Sabrás tu número cuando se envíe tu pedido.',
         },
         {
           icon: 'rocket',
@@ -397,6 +430,38 @@ const messagesEs = {
       privacy: 'Privacidad',
       unsubscribe: 'Darse de baja',
       instagram: 'Instagram',
+    },
+  },
+  foundersWelcomePage: {
+    meta: {
+      title: 'Founders 240 — Bienvenida',
+      description:
+        'Ya estás dentro. Mira tus beneficios de Fundador y lo que sigue mientras construimos SISE juntos.',
+      ogDescription: 'Bienvenido, Fundador. Tus beneficios y lo que viene.',
+    },
+    hero: {
+      eyebrow: 'Founders 240',
+      headline: 'Ya estás dentro.',
+      subhead:
+        'Gracias por creer desde el principio. Esto es lo que incluye tu lugar como Fundador.',
+      groupChatCta: 'Únete al chat grupal de Fundadores',
+      groupChatNote:
+        'Toca para unirte en Instagram — no te pierdas las actualizaciones del equipo.',
+    },
+    intro: {
+      label: 'De qué se trata',
+      body1:
+        'Muchos de ustedes han sido parte de este viaje mucho antes de que existiera un producto — en La Bandera 5K, corriendo, en eventos comunitarios o por relaciones personales. Su apoyo ayudó a construir esto desde cero.',
+      body2:
+        'Founders 240 es para quienes creyeron en la misión antes de que la meta fuera visible. Nadie atraviesa algo tan difícil solo — y estamos construyendo esto juntos.',
+    },
+    benefits: {
+      label: 'Tus beneficios de Fundador',
+    },
+    cta: {
+      label: '¿Preguntas o actualizaciones?',
+      button: 'Escríbenos en Instagram',
+      instagramHandle: '@sisepuede1.0',
     },
   },
 } as unknown as Messages;
