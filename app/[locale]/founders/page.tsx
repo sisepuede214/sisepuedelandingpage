@@ -59,13 +59,6 @@ export default async function FoundersPage({ params }: PageProps) {
             {fp.hero.headline}
           </h1>
 
-          <p
-            className="text-[15px] leading-[1.8] max-w-xl"
-            style={{ color: 'var(--muted)' }}
-          >
-            {fp.hero.subhead}
-          </p>
-
           <FounderTracker count={count} />
 
           {!soldOut && (
@@ -100,6 +93,9 @@ export default async function FoundersPage({ params }: PageProps) {
           </p>
           <div className="flex flex-col gap-5 text-[15px] leading-[1.8]" style={{ color: 'var(--foreground)' }}>
             <p>{fp.why240.body1}</p>
+            <p>{fp.why240.body2}</p>
+            <p>{fp.why240.body3}</p>
+            <p>{fp.why240.lessonIntro}</p>
             <blockquote
               className="text-3xl sm:text-4xl uppercase tracking-wide leading-tight pl-4 border-l-4 my-1"
               style={{
@@ -110,8 +106,8 @@ export default async function FoundersPage({ params }: PageProps) {
             >
               {fp.why240.quote}
             </blockquote>
-            <p>{fp.why240.body2}</p>
-            <p>{fp.why240.body3}</p>
+            <p>{fp.why240.body4}</p>
+            <p>{fp.why240.body5}</p>
           </div>
         </section>
 

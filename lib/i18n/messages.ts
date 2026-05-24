@@ -95,18 +95,16 @@ const messagesEn = {
     meta: {
       title: 'Founders 240 — Si Se Puede',
       description:
-        'Only 240 spots. Ever. Become a founding member of Si Se Puede and help build the community that makes events like La Bandera possible.',
-      ogDescription: 'Only 240 spots. Ever. Be part of the beginning.',
+        'Join Founders 240 and become part of the journey. For those who believed in the mission before the finish line was visible.',
+      ogDescription: 'Become part of the journey. Join Founders 240.',
     },
     nav: {
       homeAria: 'Si Se Puede home',
     },
     hero: {
       eyebrow: 'Founders 240',
-      headline: 'Only 240 spots. Ever.',
-      subhead:
-        'The first 240 people to support SISE will forever be connected to the beginning of this brand and community. This is your invitation.',
-      cta: 'Claim your Founder spot',
+      headline: 'Become Part of the Journey',
+      cta: 'Join Founders 240',
       ctaNote: 'Founding member price · Ships when we hit 240',
     },
     tracker: {
@@ -120,14 +118,17 @@ const messagesEn = {
       waitlistHint: 'Join the waitlist — we will let you know if anything opens up.',
     },
     why240: {
-      label: 'Why 240',
+      label: 'Why 240?',
       body1:
-        'The number comes from the Moab 240 — one of the toughest ultra-marathons on earth. 240 miles through the desert heat of Utah.',
-      quote: "You don't get through something that hard alone.",
+        'Many of you have been part of this journey long before there was ever a product. Whether we crossed paths through La Bandera 5K, running, community events, or personal relationships, your support helped build this from the ground up.',
       body2:
-        'It takes people who believe in the mission before the finish line is visible. People who support the vision early. People willing to build something bigger together.',
-      body3:
-        "That's what Founders 240 represents. The first 240 people to support SISE will forever be connected to the beginning of this brand and this community.",
+        'That same mindset carried us through the Moab 240 in 2024, one of the toughest ultra marathons in the world.',
+      body3: '240 miles through the desert heat of Moab, Utah.',
+      lessonIntro: 'That race taught us something important:',
+      quote: 'Nobody gets through something that hard alone.',
+      body4:
+        'It takes people willing to believe in the mission before the finish line is visible.',
+      body5: "That's what Founders 240 represents.",
     },
     benefits: {
       label: 'What you get as a Founder',
@@ -292,18 +293,16 @@ const messagesEs = {
     meta: {
       title: 'Founders 240 — Si Se Puede',
       description:
-        'Solo 240 lugares. Para siempre. Conviértete en miembro fundador de Si Se Puede y ayuda a construir la comunidad que hace posibles eventos como La Bandera.',
-      ogDescription: 'Solo 240 lugares. Para siempre. Sé parte del comienzo.',
+        'Únete a Founders 240 y forma parte del viaje. Para quienes creyeron en la misión antes de ver la meta.',
+      ogDescription: 'Forma parte del viaje. Únete a Founders 240.',
     },
     nav: {
       homeAria: 'Inicio Si Se Puede',
     },
     hero: {
       eyebrow: 'Founders 240',
-      headline: 'Solo 240 lugares. Para siempre.',
-      subhead:
-        'Las primeras 240 personas en apoyar a SISE quedarán conectadas para siempre con el inicio de esta marca y esta comunidad. Esta es tu invitación.',
-      cta: 'Reclama tu lugar de Fundador',
+      headline: 'Forma Parte del Viaje',
+      cta: 'Únete a Founders 240',
       ctaNote: 'Precio de miembro fundador · Envío cuando lleguemos a 240',
     },
     tracker: {
@@ -318,14 +317,17 @@ const messagesEs = {
         'Únete a la lista de espera — te avisaremos si se abre algo.',
     },
     why240: {
-      label: 'Por qué 240',
+      label: '¿Por qué 240?',
       body1:
-        'El número viene del Moab 240 — una de las ultramaratones más duras del mundo. 240 millas a través del calor del desierto de Utah.',
-      quote: 'No atraviesas algo tan difícil solo.',
+        'Muchos de ustedes han sido parte de este viaje mucho antes de que existiera un producto. Ya sea que nos cruzamos en La Bandera 5K, corriendo, en eventos comunitarios o por relaciones personales, su apoyo ayudó a construir esto desde cero.',
       body2:
-        'Se necesita gente que cree en la misión antes de ver la meta. Gente que apoye la visión desde el principio. Gente dispuesta a construir algo más grande juntos.',
-      body3:
-        'Eso es lo que representa Founders 240. Las primeras 240 personas en apoyar a SISE quedarán conectadas para siempre con el inicio de esta marca y esta comunidad.',
+        'Esa misma mentalidad nos llevó a completar el Moab 240 en 2024, una de las ultramaratones más duras del mundo.',
+      body3: '240 millas a través del calor del desierto de Moab, Utah.',
+      lessonIntro: 'Esa carrera nos enseñó algo importante:',
+      quote: 'Nadie atraviesa algo tan difícil solo.',
+      body4:
+        'Se necesita gente dispuesta a creer en la misión antes de que la meta sea visible.',
+      body5: 'Eso es lo que representa Founders 240.',
     },
     benefits: {
       label: 'Lo que obtienes como Fundador',
