@@ -91,6 +91,113 @@ const messagesEn = {
     subnote: "We'll keep you updated first.",
     followInstagram: 'Follow on Instagram',
   },
+  foundersPage: {
+    meta: {
+      title: 'Founders 240 — Si Se Puede',
+      description:
+        'Only 240 spots. Ever. Become a founding member of Si Se Puede and help build the community that makes events like La Bandera possible.',
+      ogDescription: 'Only 240 spots. Ever. Be part of the beginning.',
+    },
+    nav: {
+      homeAria: 'Si Se Puede home',
+    },
+    hero: {
+      eyebrow: 'Founders 240',
+      headline: 'Only 240 spots. Ever.',
+      subhead:
+        'The first 240 people to support SISE will forever be connected to the beginning of this brand and community. This is your invitation.',
+      cta: 'Claim your Founder spot',
+      ctaNote: 'Founding member price · Ships when we hit 240',
+    },
+    tracker: {
+      membersLabel: 'founding members',
+      totalLabel: 'total spots',
+      totalSuffix: 'ever',
+      remaining: '{count} spots remaining',
+    },
+    soldOut: {
+      title: 'All 240 spots claimed. You missed it.',
+      waitlistHint: 'Join the waitlist — we will let you know if anything opens up.',
+    },
+    why240: {
+      label: 'Why 240',
+      body1:
+        'The number comes from the Moab 240 — one of the toughest ultra-marathons on earth. 240 miles through the desert heat of Utah.',
+      quote: "You don't get through something that hard alone.",
+      body2:
+        'It takes people who believe in the mission before the finish line is visible. People who support the vision early. People willing to build something bigger together.',
+      body3:
+        "That's what Founders 240 represents. The first 240 people to support SISE will forever be connected to the beginning of this brand and this community.",
+    },
+    benefits: {
+      label: 'What you get as a Founder',
+      items: [
+        {
+          icon: 'hash',
+          title: 'Your Founder number',
+          description: 'Permanently assigned #001–240. Yours forever.',
+        },
+        {
+          icon: 'rocket',
+          title: 'First access',
+          description: "Every future product launch, you're first in line.",
+        },
+        {
+          icon: 'shirt',
+          title: 'Founders merch',
+          description: 'Exclusive drops that will never restock.',
+        },
+        {
+          icon: 'calendar',
+          title: 'Priority event access',
+          description: 'Front of the line for every SISE event.',
+        },
+        {
+          icon: 'users',
+          title: 'Private community',
+          description: 'Direct access to the team and other Founders.',
+        },
+        {
+          icon: 'flask',
+          title: 'Flavor testing',
+          description: 'Try new products before anyone else.',
+        },
+        {
+          icon: 'trending',
+          title: 'Investment access',
+          description: 'First look if opportunities ever open up.',
+        },
+        {
+          icon: 'star',
+          title: 'Lifetime recognition',
+          description: 'An original supporter of SISE. Always.',
+        },
+      ],
+    },
+    chips: {
+      label: "Who's already in",
+      intro: 'The first {count} Founders have claimed their spots.',
+      youChip: '— you?',
+      spotsOpen: '{count} spots open',
+      more: '+{count} more',
+      footnote: 'Spots are claimed in order. Your number is assigned at purchase.',
+    },
+    bottomCta: {
+      headline: 'You were at La Bandera.',
+      headline2: 'You already know what this is about.',
+      body1: 'Secure your Founder number before all 240 spots are claimed.',
+      body2: 'There is no waitlist. There is no second round.',
+      remaining: '{count} spots remaining · Only 240 will ever exist',
+      questionsBefore: 'Questions? Reply to your email or DM us on',
+      instagramHandle: '@sisepuede1.0',
+    },
+    footer: {
+      copyright: '© 2026 Si Se Puede · Hydration for the cultura',
+      privacy: 'Privacy',
+      unsubscribe: 'Unsubscribe',
+      instagram: 'Instagram',
+    },
+  },
 } as const;
 
 const messagesEs = {
@@ -180,6 +287,115 @@ const messagesEs = {
     body: 'Llegaste temprano. Mantente atento, el lanzamiento viene pronto.',
     subnote: 'Te mantendremos al tanto primero.',
     followInstagram: 'Seguir en Instagram',
+  },
+  foundersPage: {
+    meta: {
+      title: 'Founders 240 — Si Se Puede',
+      description:
+        'Solo 240 lugares. Para siempre. Conviértete en miembro fundador de Si Se Puede y ayuda a construir la comunidad que hace posibles eventos como La Bandera.',
+      ogDescription: 'Solo 240 lugares. Para siempre. Sé parte del comienzo.',
+    },
+    nav: {
+      homeAria: 'Inicio Si Se Puede',
+    },
+    hero: {
+      eyebrow: 'Founders 240',
+      headline: 'Solo 240 lugares. Para siempre.',
+      subhead:
+        'Las primeras 240 personas en apoyar a SISE quedarán conectadas para siempre con el inicio de esta marca y esta comunidad. Esta es tu invitación.',
+      cta: 'Reclama tu lugar de Fundador',
+      ctaNote: 'Precio de miembro fundador · Envío cuando lleguemos a 240',
+    },
+    tracker: {
+      membersLabel: 'miembros fundadores',
+      totalLabel: 'lugares en total',
+      totalSuffix: 'para siempre',
+      remaining: '{count} lugares disponibles',
+    },
+    soldOut: {
+      title: 'Los 240 lugares están ocupados. Te lo perdiste.',
+      waitlistHint:
+        'Únete a la lista de espera — te avisaremos si se abre algo.',
+    },
+    why240: {
+      label: 'Por qué 240',
+      body1:
+        'El número viene del Moab 240 — una de las ultramaratones más duras del mundo. 240 millas a través del calor del desierto de Utah.',
+      quote: 'No atraviesas algo tan difícil solo.',
+      body2:
+        'Se necesita gente que cree en la misión antes de ver la meta. Gente que apoye la visión desde el principio. Gente dispuesta a construir algo más grande juntos.',
+      body3:
+        'Eso es lo que representa Founders 240. Las primeras 240 personas en apoyar a SISE quedarán conectadas para siempre con el inicio de esta marca y esta comunidad.',
+    },
+    benefits: {
+      label: 'Lo que obtienes como Fundador',
+      items: [
+        {
+          icon: 'hash',
+          title: 'Tu número de Fundador',
+          description: 'Asignado permanentemente #001–240. Tuyo para siempre.',
+        },
+        {
+          icon: 'rocket',
+          title: 'Acceso primero',
+          description: 'En cada lanzamiento futuro, tú eres el primero.',
+        },
+        {
+          icon: 'shirt',
+          title: 'Merch de Fundadores',
+          description: 'Lanzamientos exclusivos que nunca volverán.',
+        },
+        {
+          icon: 'calendar',
+          title: 'Acceso prioritario a eventos',
+          description: 'Al frente de la fila en cada evento SISE.',
+        },
+        {
+          icon: 'users',
+          title: 'Comunidad privada',
+          description: 'Acceso directo al equipo y otros Fundadores.',
+        },
+        {
+          icon: 'flask',
+          title: 'Prueba de sabores',
+          description: 'Prueba productos nuevos antes que nadie.',
+        },
+        {
+          icon: 'trending',
+          title: 'Acceso a inversión',
+          description: 'Primera mirada si algún día se abren oportunidades.',
+        },
+        {
+          icon: 'star',
+          title: 'Reconocimiento de por vida',
+          description: 'Un apoyador original de SISE. Siempre.',
+        },
+      ],
+    },
+    chips: {
+      label: 'Quién ya está dentro',
+      intro: 'Los primeros {count} Fundadores ya reclamaron su lugar.',
+      youChip: '— ¿tú?',
+      spotsOpen: '{count} lugares disponibles',
+      more: '+{count} más',
+      footnote:
+        'Los lugares se reclaman en orden. Tu número se asigna al comprar.',
+    },
+    bottomCta: {
+      headline: 'Estuviste en La Bandera.',
+      headline2: 'Ya sabes de qué se trata.',
+      body1: 'Asegura tu número de Fundador antes de que se ocupen los 240 lugares.',
+      body2: 'No hay lista de espera. No hay segunda ronda.',
+      remaining: '{count} lugares disponibles · Solo existirán 240',
+      questionsBefore: '¿Preguntas? Responde tu correo o escríbenos en',
+      instagramHandle: '@sisepuede1.0',
+    },
+    footer: {
+      copyright: '© 2026 Si Se Puede · Hidratación para la cultura',
+      privacy: 'Privacidad',
+      unsubscribe: 'Darse de baja',
+      instagram: 'Instagram',
+    },
   },
 } as unknown as Messages;
 

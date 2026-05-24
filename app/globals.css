@@ -17,6 +17,14 @@
   --border: #d8d0c8;
   --surface: #ffffff;
   --danger: #b4231d;
+
+  /* Founders 240 campaign */
+  --founder-teal: #1d9e75;
+  --founder-teal-dark: #0f6e56;
+  --founder-teal-light: #e1f5ee;
+  --founder-teal-mid: #9fe1cb;
+  --founder-chip-bg: #eeedfe;
+  --founder-chip-text: #534ab7;
 }
 
 @theme inline {
@@ -29,6 +37,12 @@
   --color-border: var(--border);
   --color-surface: var(--surface);
   --color-danger: var(--danger);
+  --color-founder-teal: var(--founder-teal);
+  --color-founder-teal-dark: var(--founder-teal-dark);
+  --color-founder-teal-light: var(--founder-teal-light);
+  --color-founder-teal-mid: var(--founder-teal-mid);
+  --color-founder-chip-bg: var(--founder-chip-bg);
+  --color-founder-chip-text: var(--founder-chip-text);
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-display: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
 }
@@ -40,6 +54,24 @@
 }
 .btn-accent:hover {
   background: var(--accent-hover);
+}
+
+.btn-founder {
+  background: var(--founder-teal-dark);
+  color: var(--founder-teal-light);
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
+}
+.btn-founder:hover {
+  background: #0a5a45;
+  transform: scale(1.01);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-founder:hover {
+    transform: none;
+  }
 }
 
 *, *::before, *::after {
