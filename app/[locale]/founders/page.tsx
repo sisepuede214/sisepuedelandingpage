@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { FounderChips } from '@/app/components/FounderChips';
 import { FounderBenefitIcon } from '@/app/components/founderBenefitIcons';
 import { FounderTracker } from '@/app/components/FounderTracker';
@@ -48,37 +49,37 @@ export default async function FoundersPage({ params }: PageProps) {
 
       <main className="flex-1 w-full">
         <FoundersHero>
-          <p
-            className="text-xs font-semibold uppercase tracking-widest"
-            style={{ color: 'var(--founder-teal)' }}
-          >
-            {fp.hero.eyebrow}
-          </p>
-
-          <h1 className={`${DISPLAY_HEADING} max-w-2xl`} style={DISPLAY_HEADING_STYLE}>
-            {fp.hero.headline}
-          </h1>
+          <div className="w-full max-w-3xl pb-6 sm:pb-8 overflow-visible">
+            <Image
+              src="/Founders240.png"
+              alt={`${fp.hero.eyebrow}. ${fp.hero.ctaNote}`}
+              width={960}
+              height={480}
+              sizes="(max-width: 768px) 100vw, 48rem"
+              className="block w-full h-auto mx-auto"
+              priority
+            />
+          </div>
 
           <FounderTracker count={count} />
 
           {!soldOut && (
-            <>
-              <TrackedLink
-                href={FOUNDERS_SHOPIFY_URL}
-                eventName="cta_founder_claim_clicked"
-                eventProperties={{ cta_location: 'hero' }}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={CTA_CLASS}
-              >
-                {fp.hero.cta}
-                <span aria-hidden="true">→</span>
-              </TrackedLink>
-              <p className="text-xs" style={{ color: 'var(--muted)' }}>
-                {fp.hero.ctaNote}
-              </p>
-            </>
+            <TrackedLink
+              href={FOUNDERS_SHOPIFY_URL}
+              eventName="cta_founder_claim_clicked"
+              eventProperties={{ cta_location: 'hero' }}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={CTA_CLASS}
+            >
+              {fp.hero.cta}
+              <span aria-hidden="true">→</span>
+            </TrackedLink>
           )}
+
+          <h1 className={`  text-2xl`} style={DISPLAY_HEADING_STYLE}>
+            {fp.hero.headline}
+          </h1>
         </FoundersHero>
 
         <section

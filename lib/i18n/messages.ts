@@ -105,7 +105,7 @@ const messagesEn = {
       eyebrow: 'Founders 240',
       headline: 'Become Part of the Journey',
       cta: 'Join Founders 240',
-      ctaNote: 'Founding member price · Ships when we hit 240',
+      ctaNote: 'Reserved for the first believers',
     },
     tracker: {
       membersLabel: 'founding members',
@@ -303,7 +303,7 @@ const messagesEs = {
       eyebrow: 'Founders 240',
       headline: 'Forma Parte del Viaje',
       cta: 'Únete a Founders 240',
-      ctaNote: 'Precio de miembro fundador · Envío cuando lleguemos a 240',
+      ctaNote: 'Reservado para los primeros que creyeron',
     },
     tracker: {
       membersLabel: 'miembros fundadores',

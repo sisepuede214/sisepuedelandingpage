@@ -25,12 +25,12 @@ export function FoundersHero({ children }: FoundersHeroProps) {
   const items = Children.toArray(children);
 
   return (
-    <section className="flex flex-col items-center text-center gap-6 py-12 px-5 sm:px-6 max-w-3xl mx-auto w-full">
+    <section className="flex flex-col items-center text-center gap-6 sm:gap-8 py-12 sm:py-14 px-5 sm:px-6 max-w-3xl mx-auto w-full">
       {items.length > 0
         ? items.map((child, i) => (
             <div
               key={i}
-              className="w-full flex flex-col items-center"
+              className="w-full flex flex-col items-center overflow-visible"
               style={{
                 opacity: mounted || reduceMotion ? 1 : 0,
                 transform: mounted || reduceMotion ? 'translateY(0)' : 'translateY(12px)',
