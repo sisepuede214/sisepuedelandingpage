@@ -30,7 +30,7 @@ export function FoundersHero({ children }: FoundersHeroProps) {
         ? items.map((child, i) => (
             <div
               key={i}
-              className="w-full flex flex-col items-center overflow-visible"
+              className="w-full flex flex-col items-center"
               style={{
                 opacity: mounted || reduceMotion ? 1 : 0,
                 transform: mounted || reduceMotion ? 'translateY(0)' : 'translateY(12px)',

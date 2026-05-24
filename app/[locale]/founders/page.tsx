@@ -49,17 +49,15 @@ export default async function FoundersPage({ params }: PageProps) {
 
       <main className="flex-1 w-full">
         <FoundersHero>
-          <div className="w-full max-w-3xl pb-6 sm:pb-8 overflow-visible">
-            <Image
-              src="/Founders240.png"
-              alt={`${fp.hero.eyebrow}. ${fp.hero.ctaNote}`}
-              width={960}
-              height={480}
-              sizes="(max-width: 768px) 100vw, 48rem"
-              className="block w-full h-auto mx-auto"
-              priority
-            />
-          </div>
+          <Image
+            src="/Founders240.png"
+            alt={`${fp.hero.eyebrow}. ${fp.hero.ctaNote}`}
+            width={960}
+            height={480}
+            sizes="(max-width: 768px) 100vw, 48rem"
+            className="w-full max-w-3xl h-auto mx-auto"
+            priority
+          />
 
           <FounderTracker count={count} />
 
