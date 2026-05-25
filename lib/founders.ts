@@ -10,7 +10,7 @@ import { fetchFoundersCustomerCountFromShopify } from '@/lib/shopify/admin';
 export const FOUNDERS_TOTAL = 240;
 
 export const FOUNDERS_SHOPIFY_URL =
-  'https://www.sisepuedeshop.com/products/founders-240';
+  'https://sisepuede1.myshopify.com/products/hydration-drink-lime-flavor-si-se?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleAR_TJNleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAac8ExfT0qqRv6-5B9FdmGlbqCoi-b4bE0hwTUXkn8NDiuWuJ72uZaQQ0aHidQ_aem_aszVP4-yR8lAr25jWBlapQ';
 
 export const FOUNDERS_GROUP_CHAT_URL =
   'https://ig.me/j/AbbRc1hRH_cRwq-N/';
