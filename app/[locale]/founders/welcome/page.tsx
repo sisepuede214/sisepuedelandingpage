@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { FounderBenefitsGrid } from '@/app/components/FounderBenefitsGrid';
 import { FoundersPageFooter } from '@/app/components/FoundersPageFooter';
 import { FoundersPageNav } from '@/app/components/FoundersPageNav';
+import { FoundersPageTouchpoint } from '@/app/components/FoundersPageTouchpoint';
 import { TrackedLink } from '@/app/components/TrackedLink';
 import { FOUNDERS_GROUP_CHAT_URL } from '@/lib/founders';
 import { getMessages } from '@/lib/i18n/messages';
@@ -29,6 +30,7 @@ export default async function FoundersWelcomePage({ params }: PageProps) {
   return (
     <div className="flex flex-col min-h-screen" style={{ background: 'var(--background)' }}>
       <FoundersPageNav />
+      <FoundersPageTouchpoint />
 
       <main className="flex-1 w-full">
         <section className="flex flex-col items-center text-center gap-6 sm:gap-8 py-12 sm:py-14 px-5 sm:px-6 max-w-3xl mx-auto w-full">

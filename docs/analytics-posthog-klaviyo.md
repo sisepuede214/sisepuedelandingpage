@@ -100,6 +100,16 @@ When a known profile returns with updated **`source`**, **`signup_phase`**, or *
 1. **Profile patch** with updated touchpoint fields (and optional `engagement_level` if sent).
 2. **`landing_touchpoint`** event with **`touch_type: return_visit`** and related properties.
 
+### Founders page visit — `POST /api/founders-visit` (`app/api/founders-visit/route.ts`)
+
+Fired once per browser session per locale from **`app/components/FoundersPageTouchpoint.tsx`** on **`/[locale]/founders`** and **`/[locale]/founders/welcome`**:
+
+1. **Known signup** (email in localStorage): upsert profile with `visited_founders_page`, `founders_page_visited_at`, `last_touchpoint: founders_page`.
+2. **Anonymous**: upsert profile by `visitor_id` (stable ID in localStorage) with the same properties.
+3. Custom metric **`founders_page_visit`** with `source`, `language`, `signup_phase`, `touched_at`, and UTM fields when present.
+
+PostHog: **`founders_page_visit`** (when analytics consent is on).
+
 ---
 
 ## What is not duplicated

@@ -5,6 +5,7 @@ import { FounderTracker } from '@/app/components/FounderTracker';
 import { FoundersHero } from '@/app/components/FoundersHero';
 import { FoundersPageFooter } from '@/app/components/FoundersPageFooter';
 import { FoundersPageNav } from '@/app/components/FoundersPageNav';
+import { FoundersPageTouchpoint } from '@/app/components/FoundersPageTouchpoint';
 import { TrackedLink } from '@/app/components/TrackedLink';
 import {
   FOUNDERS_SHOPIFY_URL,
@@ -43,6 +44,7 @@ export default async function FoundersPage({ params }: PageProps) {
   return (
     <div className="flex flex-col min-h-screen" style={{ background: 'var(--background)' }}>
       <FoundersPageNav />
+      <FoundersPageTouchpoint />
 
       <main className="flex-1 w-full">
         <FoundersHero>
