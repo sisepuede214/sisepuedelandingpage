@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:founders": "node scripts/test-shopify-founders.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.16.0",

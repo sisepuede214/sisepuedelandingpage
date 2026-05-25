@@ -1,5 +1,6 @@
 /**
- * Founders 240 count — unique Shopify customers with a "Pre-Order" tagged order.
+ * Founders 240 count — unique Shopify customers with a "Pre-Order" tagged order
+ * (minus emails in data/founders-excluded-emails.json or FOUNDERS_EXCLUDED_EMAILS).
  * Falls back to `data/founders.json` if Shopify env vars are missing or the API fails.
  */
 import { unstable_cache } from 'next/cache';

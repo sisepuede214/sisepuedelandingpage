@@ -1,3 +1,9 @@
+import {
+  getExcludedFounderEmails,
+  getExcludedFounderNames,
+  isExcludedFounderOrder,
+} from '@/lib/founders-excluded';
+
 const SHOPIFY_API_VERSION = '2024-10';
 const ORDERS_PAGE_SIZE = 100;
 
@@ -14,7 +20,8 @@ type OrdersPageResponse = {
       edges?: Array<{
         node?: {
           email?: string | null;
-          customer?: { id?: string | null } | null;
+          billingAddress?: { name?: string | null } | null;
+          shippingAddress?: { name?: string | null } | null;
         };
       }>;
       pageInfo?: {
@@ -44,17 +51,10 @@ function normalizeEmail(email: string | null | undefined): string | null {
   return normalized || null;
 }
 
-/** Stable key: Shopify customer id, else normalized order email for guest checkouts. */
-function founderIdentityKey(order: {
-  email?: string | null;
-  customer?: { id?: string | null } | null;
-}): string | null {
-  const customerId = order.customer?.id?.trim();
-  if (customerId) return `customer:${customerId}`;
-
+/** Stable key from order email (works with read_orders only; no read_customers needed). */
+function founderIdentityKey(order: { email?: string | null }): string | null {
   const email = normalizeEmail(order.email);
   if (email) return `email:${email}`;
-
   return null;
 }
 
@@ -96,8 +96,11 @@ const ORDERS_PAGE_QUERY = `query FoundersOrdersPage($query: String!, $first: Int
     edges {
       node {
         email
-        customer {
-          id
+        billingAddress {
+          name
+        }
+        shippingAddress {
+          name
         }
       }
     }
@@ -117,6 +120,8 @@ export async function fetchFoundersCustomerCountFromShopify(): Promise<number | 
   const config = getShopifyConfig();
   if (!config) return null;
 
+  const excludedEmails = getExcludedFounderEmails();
+  const excludedNames = getExcludedFounderNames();
   const uniqueFounders = new Set<string>();
   let cursor: string | null = null;
   let hasNextPage = true;
@@ -137,6 +142,7 @@ export async function fetchFoundersCustomerCountFromShopify(): Promise<number | 
     for (const edge of json.data.orders.edges ?? []) {
       const node = edge.node;
       if (!node) continue;
+      if (isExcludedFounderOrder(node, excludedEmails, excludedNames)) continue;
       const key = founderIdentityKey(node);
       if (key) uniqueFounders.add(key);
     }
