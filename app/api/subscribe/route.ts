@@ -7,6 +7,14 @@ const TOUCHPOINT_EVENT_NAME = 'landing_touchpoint';
 const DEFAULT_SOURCE = 'landing_page';
 const DEFAULT_SIGNUP_PHASE = 'pre_event';
 const TAG_MAX_LEN = 128;
+const PHOTOS_TOUCHPOINT_SOURCE = 'mundial_5K';
+
+function resolveSubscribeListId(source: string, defaultListId: string): string {
+  if (source === PHOTOS_TOUCHPOINT_SOURCE) {
+    return process.env.KLAVIYO_LIST_ID_PHOTOS ?? 'Snqf86';
+  }
+  return defaultListId;
+}
 
 interface SubscribeBody {
   email: string;
@@ -348,9 +356,10 @@ export async function POST(req: NextRequest) {
     }
 
     const isLoadTest = process.env.LOAD_TEST === 'true';
-    const listId = (isLoadTest ? process.env.KLAVIYO_TEST_LIST_ID : undefined) ?? primaryListId;
+    const defaultListId = (isLoadTest ? process.env.KLAVIYO_TEST_LIST_ID : undefined) ?? primaryListId;
     const lastTouchAt = new Date().toISOString();
     const properties = profilePropertiesFromBody(body, smsOptIn, lastTouchAt);
+    const listId = resolveSubscribeListId(properties.source, defaultListId);
     const language = sanitizeLanguage(body.language);
     const phoneForKlaviyo = smsOptIn ? normalizedPhone : undefined;
     const patchPhoneOnConflict = phoneForKlaviyo;

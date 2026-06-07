@@ -7,7 +7,12 @@ import { useLocaleMessages } from './LocaleProvider';
 
 type FormState = 'idle' | 'loading' | 'success' | 'error';
 
-export function SignupForm() {
+type SignupFormProps = {
+  source?: string;
+  signupPhase?: string;
+};
+
+export function SignupForm({ source, signupPhase }: SignupFormProps = {}) {
   const { messages: m, locale } = useLocaleMessages();
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -16,9 +21,17 @@ export function SignupForm() {
   const [errorMsg, setErrorMsg] = useState('');
   const hasStarted = useRef(false);
 
+  function getContext() {
+    const base = getSignupTrackingContext(window.location.search, locale);
+    return {
+      ...base,
+      ...(source ? { source } : {}),
+      ...(signupPhase ? { signup_phase: signupPhase } : {}),
+    };
+  }
+
   function buildSignupEventProps(extra?: Record<string, unknown>) {
-    const context = getSignupTrackingContext(window.location.search, locale);
-    return { ...context, ...(extra ?? {}) };
+    return { ...getContext(), ...(extra ?? {}) };
   }
 
   function handleFirstInteraction() {
@@ -32,7 +45,7 @@ export function SignupForm() {
     e.preventDefault();
 
     const hasPhone = Boolean(phone && smsConsent);
-    const context = getSignupTrackingContext(window.location.search, locale);
+    const context = getContext();
     posthog.capture('signup_submitted', {
       ...context,
       has_phone: hasPhone,
@@ -150,11 +163,6 @@ export function SignupForm() {
             </a>{' '}
             {m.signupForm.successBodyAfter}
           </p>
-          {phone && smsConsent && (
-            <p className="text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
-              {m.signupForm.smsNote}
-            </p>
-          )}
         </div>
 
         <a

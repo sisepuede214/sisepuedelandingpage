@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { EventPhotosTouchpoint } from '@/app/components/EventPhotosTouchpoint';
+import { SignupGate } from '@/app/components/SignupGate';
 import { LanguageToggle } from '@/app/components/LanguageToggle';
 import { TrackedLink } from '@/app/components/TrackedLink';
 import { getMessages } from '@/lib/i18n/messages';
@@ -62,7 +62,7 @@ export default async function PhotosPage({ params }: PageProps) {
         </div>
 
         <section className="w-full max-w-4xl mt-10 flex flex-col items-stretch gap-6">
-          <figure className="relative aspect-4/5 w-full overflow-hidden rounded-lg" style={{ background: 'var(--surface)' }}>
+          {/* <figure className="relative aspect-4/5 w-full overflow-hidden rounded-lg" style={{ background: 'var(--surface)' }}>
             <Image
               src="/photoslandingpage/Emannual_Luchador.jpg"
               alt={m.photosPage.imageAltOne}
@@ -78,7 +78,7 @@ export default async function PhotosPage({ params }: PageProps) {
                 {m.photosPage.photoCredit}
               </span>
             </figcaption>
-          </figure>
+          </figure> */}
 
           <div
             className="w-full flex flex-col items-center text-center gap-4 py-8 px-6 rounded-lg"
@@ -90,7 +90,15 @@ export default async function PhotosPage({ params }: PageProps) {
             >
               {m.photosPage.ctaTitle}
             </p>
-            <EventPhotosTouchpoint />
+            <SignupGate
+              source="mundial_5K"
+              signupPhase="event_day"
+              gateCopy={{
+                title: m.photosPage.gateTitle,
+                body: m.photosPage.gateBody,
+                subnote: m.photosPage.gateSubnote,
+              }}
+            />
           </div>
 
           <figure className="relative aspect-4/5 w-full overflow-hidden rounded-lg" style={{ background: 'var(--surface)' }}>

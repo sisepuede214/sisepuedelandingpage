@@ -11,7 +11,17 @@ import {
 } from './signupTracking';
 import { useLocaleMessages } from './LocaleProvider';
 
-export function SignupGate() {
+type SignupGateProps = {
+  source?: string;
+  signupPhase?: string;
+  gateCopy?: {
+    title: string;
+    body: string;
+    subnote: string;
+  };
+};
+
+export function SignupGate({ source, signupPhase, gateCopy }: SignupGateProps = {}) {
   const { messages: m, locale } = useLocaleMessages();
   const [storedIdentity, setStoredIdentity] = useState<StoredSignupIdentity | null | undefined>(
     undefined,
@@ -19,8 +29,13 @@ export function SignupGate() {
 
   const context = useMemo(() => {
     const search = typeof window !== 'undefined' ? window.location.search : '';
-    return getSignupTrackingContext(search, locale);
-  }, [locale]);
+    const base = getSignupTrackingContext(search, locale);
+    return {
+      ...base,
+      ...(source ? { source } : {}),
+      ...(signupPhase ? { signup_phase: signupPhase } : {}),
+    };
+  }, [locale, source, signupPhase]);
 
   useEffect(() => {
     void Promise.resolve().then(() => {
@@ -80,12 +95,14 @@ export function SignupGate() {
     })();
   }, [context.language, context.signup_phase, context.source, storedIdentity]);
 
+  const gate = gateCopy ?? m.signupGate;
+
   if (storedIdentity === undefined) {
-    return <SignupForm />;
+    return <SignupForm source={source} signupPhase={signupPhase} />;
   }
 
   if (!storedIdentity) {
-    return <SignupForm />;
+    return <SignupForm source={source} signupPhase={signupPhase} />;
   }
 
   return (
@@ -94,14 +111,14 @@ export function SignupGate() {
         className="text-4xl uppercase tracking-wide"
         style={{ fontFamily: 'var(--font-display)', color: 'var(--accent)' }}
       >
-        {m.signupGate.title}
+        {gate.title}
       </p>
       <div className="flex flex-col gap-2">
         <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground)' }}>
-          {m.signupGate.body}
+          {gate.body}
         </p>
         <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--muted)' }}>
-          {m.signupGate.subnote}
+          {gate.subnote}
         </p>
       </div>
       {/* <a

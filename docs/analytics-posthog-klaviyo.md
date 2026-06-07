@@ -38,7 +38,6 @@ This document describes what is tracked in **PostHog** vs **Klaviyo**, how conse
 | `landing_return_touch`        | Returning user (stored identity) with new source/phase/language after touchpoint API succeeds. |
 | `cta_instagram_clicked`       | Instagram links; includes **`cta_location`** (e.g. header, footer, success UI). |
 | `cta_back_to_signup_clicked`  | Link to **`#signup`** from the closing section.                               |
-| `cta_get_photos_clicked`      | Primary **Get Photos** CTA on **`/[locale]/photos`**; includes `source=event_photos_touchpoint`. |
 | `language_switched`           | User switches EN/ES in **`app/components/LanguageToggle.tsx`**.               |
 
 CTAs on the server-rendered home page use **`app/components/TrackedLink.tsx`** to fire `posthog.capture` from the client.
@@ -95,7 +94,7 @@ If Klaviyo env vars are missing, the route may return success in **dev mode** wi
 
 ### Return visit / touchpoint — `POST /api/touchpoint` (`app/api/touchpoint/route.ts`)
 
-When a known profile returns with updated **`source`**, **`signup_phase`**, or **`language`** (client calls this from **`app/components/SignupGate.tsx`** after a successful prior signup, and from **`app/components/EventPhotosTouchpoint.tsx`** on the photos page):
+When a known profile returns with updated **`source`**, **`signup_phase`**, or **`language`** (client calls this from **`app/components/SignupGate.tsx`** on the home page, founders waitlist, or **`/[locale]/photos`** with `source=mundial_5K`):
 
 1. **Profile patch** with updated touchpoint fields (and optional `engagement_level` if sent).
 2. **`landing_touchpoint`** event with **`touch_type: return_visit`** and related properties.
@@ -128,6 +127,7 @@ PostHog: **`founders_page_visit`** (when analytics consent is on).
 | `KLAVIYO_API_KEY`           | Klaviyo private API key (server).  |
 | `KLAVIYO_LIST_ID_POSTEVENT` | Preferred target list for new opt-ins. |
 | `KLAVIYO_LIST_ID`           | Fallback list for subscriptions if post-event list is unset. |
+| `KLAVIYO_LIST_ID_PHOTOS`    | List for **`/[locale]/photos`** signups (`source=mundial_5K`). Defaults to `Snqf86` if unset. |
 
 See **`.env.example`** in the repo for placeholders.
 
