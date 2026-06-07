@@ -62,24 +62,6 @@ export default async function PhotosPage({ params }: PageProps) {
         </div>
 
         <section className="w-full max-w-4xl mt-10 flex flex-col items-stretch gap-6">
-          {/* <figure className="relative aspect-4/5 w-full overflow-hidden rounded-lg" style={{ background: 'var(--surface)' }}>
-            <Image
-              src="/photoslandingpage/Emannual_Luchador.jpg"
-              alt={m.photosPage.imageAltOne}
-              fill
-              className="object-cover"
-              sizes="(max-width: 896px) 100vw, 896px"
-            />
-            <figcaption className="absolute bottom-0 left-0 right-0 px-3 py-2.5 text-[11px] sm:text-xs font-medium tracking-wide">
-              <span
-                className="inline-block rounded px-2 py-0.5"
-                style={{ backgroundColor: 'rgba(0,0,0,0.55)', color: '#fff' }}
-              >
-                {m.photosPage.photoCredit}
-              </span>
-            </figcaption>
-          </figure> */}
-
           <div
             className="w-full flex flex-col items-center text-center gap-4 py-8 px-6 rounded-lg"
             style={{ background: 'var(--surface)' }}
@@ -98,19 +80,11 @@ export default async function PhotosPage({ params }: PageProps) {
           <figure className="relative aspect-4/5 w-full overflow-hidden rounded-lg" style={{ background: 'var(--surface)' }}>
             <Image
               src="/photoslandingpage/Emanuel_Flag.jpg"
-              alt={m.photosPage.imageAltTwo}
+              alt={m.photosPage.imageAlt}
               fill
               className="object-cover"
               sizes="(max-width: 896px) 100vw, 896px"
             />
-            <figcaption className="absolute bottom-0 left-0 right-0 px-3 py-2.5 text-[11px] sm:text-xs font-medium tracking-wide">
-              <span
-                className="inline-block rounded px-2 py-0.5"
-                style={{ backgroundColor: 'rgba(0,0,0,0.55)', color: '#fff' }}
-              >
-                {m.photosPage.photoCredit}
-              </span>
-            </figcaption>
           </figure>
         </section>
       </main>
