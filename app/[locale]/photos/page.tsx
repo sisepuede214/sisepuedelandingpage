@@ -67,6 +67,8 @@ export default async function PhotosPage({ params }: PageProps) {
             style={{ background: 'var(--surface)' }}
           >
             <SignupGate
+              source="la_bandera_austin"
+              signupPhase="event_day"
               gateCopy={{
                 title: m.photosPage.gateTitle,
                 body: m.photosPage.gateBody,
@@ -74,6 +76,16 @@ export default async function PhotosPage({ params }: PageProps) {
               }}
             />
           </div>
+
+          <figure className="relative aspect-4/5 w-full overflow-hidden rounded-lg" style={{ background: 'var(--surface)' }}>
+            <Image
+              src="/photoslandingpage/flag1.JPEG"
+              alt={m.photosPage.imageAlt}
+              fill
+              className="object-cover"
+              sizes="(max-width: 896px) 100vw, 896px"
+            />
+          </figure>
         </section>
       </main>
     </div>

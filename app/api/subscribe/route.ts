@@ -7,11 +7,15 @@ const TOUCHPOINT_EVENT_NAME = 'landing_touchpoint';
 const DEFAULT_SOURCE = 'landing_page';
 const DEFAULT_SIGNUP_PHASE = 'pre_event';
 const TAG_MAX_LEN = 128;
-const PHOTOS_TOUCHPOINT_SOURCE = 'mundial_5K';
+const MUNDIAL_5K_SOURCE = 'mundial_5K';
+const LA_BANDERA_AUSTIN_SOURCE = 'la_bandera_austin';
 
 function resolveSubscribeListId(source: string, defaultListId: string): string {
-  if (source === PHOTOS_TOUCHPOINT_SOURCE) {
+  if (source === MUNDIAL_5K_SOURCE) {
     return process.env.KLAVIYO_LIST_ID_PHOTOS ?? 'Snqf86';
+  }
+  if (source === LA_BANDERA_AUSTIN_SOURCE) {
+    return process.env.KLAVIYO_LIST_ID_LA_BANDERA_ATX ?? 'UhQQe5';
   }
   return defaultListId;
 }
