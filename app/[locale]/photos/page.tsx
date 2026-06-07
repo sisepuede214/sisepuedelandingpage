@@ -79,7 +79,7 @@ export default async function PhotosPage({ params }: PageProps) {
 
           <figure className="relative aspect-4/5 w-full overflow-hidden rounded-lg" style={{ background: 'var(--surface)' }}>
             <Image
-              src="/photoslandingpage/flag1.JPEG"
+              src="/photoslandingpage/Emanuel_Flag.jpg"
               alt={m.photosPage.imageAlt}
               fill
               className="object-cover"
