@@ -58,7 +58,6 @@ const messagesEn = {
   photosPage: {
     title: 'Mundial 5k: SISEPUEDE X HYPHEN',
     subtitle: 'Thank you for joining us! Enter your info for photos and updates!',
-    ctaTitle: 'Tap In',
     photoCredit: 'Taken by: Emanuel Gonzales',
     imageAltOne: 'Event highlight one',
     imageAltTwo: 'Event highlight two',
@@ -289,7 +288,6 @@ const messagesEs = {
   photosPage: {
     title: 'Mundial 5k: SISEPUEDE X HYPHEN',
     subtitle: '¡Gracias por acompañarnos! Ingresa tu información para fotos y novedades.',
-    ctaTitle: 'Conéctate',
     photoCredit: 'Tomada por: Emanuel Gonzales',
     imageAltOne: 'Momento destacado del evento uno',
     imageAltTwo: 'Momento destacado del evento dos',

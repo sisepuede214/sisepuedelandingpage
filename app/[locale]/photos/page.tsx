@@ -84,12 +84,6 @@ export default async function PhotosPage({ params }: PageProps) {
             className="w-full flex flex-col items-center text-center gap-4 py-8 px-6 rounded-lg"
             style={{ background: 'var(--surface)' }}
           >
-            <p
-              className="text-3xl sm:text-4xl uppercase tracking-wide"
-              style={{ fontFamily: 'var(--font-display)', color: 'var(--foreground)' }}
-            >
-              {m.photosPage.ctaTitle}
-            </p>
             <SignupGate
               source="mundial_5K"
               signupPhase="event_day"
