@@ -94,7 +94,7 @@ If Klaviyo env vars are missing, the route may return success in **dev mode** wi
 
 ### Return visit / touchpoint — `POST /api/touchpoint` (`app/api/touchpoint/route.ts`)
 
-When a known profile returns with updated **`source`**, **`signup_phase`**, or **`language`** (client calls this from **`app/components/SignupGate.tsx`** on the home page, founders waitlist, or **`/[locale]/photos`** with `source=mundial_5K`):
+When a known profile returns with updated **`source`**, **`signup_phase`**, or **`language`** (client calls this from **`app/components/SignupGate.tsx`** on the home page, founders waitlist, **`/[locale]/mundial-5k`** with `source=mundial_5K`, or **`/[locale]/photos`**):
 
 1. **Profile patch** with updated touchpoint fields (and optional `engagement_level` if sent).
 2. **`landing_touchpoint`** event with **`touch_type: return_visit`** and related properties.
@@ -127,7 +127,7 @@ PostHog: **`founders_page_visit`** (when analytics consent is on).
 | `KLAVIYO_API_KEY`           | Klaviyo private API key (server).  |
 | `KLAVIYO_LIST_ID_POSTEVENT` | Preferred target list for new opt-ins. |
 | `KLAVIYO_LIST_ID`           | Fallback list for subscriptions if post-event list is unset. |
-| `KLAVIYO_LIST_ID_PHOTOS`    | List for **`/[locale]/photos`** signups (`source=mundial_5K`). Defaults to `Snqf86` if unset. |
+| `KLAVIYO_LIST_ID_PHOTOS`    | List for **`/[locale]/mundial-5k`** signups (`source=mundial_5K`). Defaults to `Snqf86` if unset. |
 
 See **`.env.example`** in the repo for placeholders.
 

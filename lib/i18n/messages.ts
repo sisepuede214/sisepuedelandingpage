@@ -55,12 +55,20 @@ const messagesEn = {
   follow: {
     label: 'Follow the journey',
   },
-  photosPage: {
+  mundial5kPage: {
     title: 'Mundial 5k: SISEPUEDE X HYPHEN',
     subtitle: 'Thank you for joining us! Enter your info to stay in the loop for SISE updates.',
     imageAlt: 'Event highlight',
     gateTitle: "You're on the list.",
     gateBody: 'Thanks for joining us. Stay in the loop for SISE updates.',
+    gateSubnote: "We'll keep you posted first.",
+  },
+  photosPage: {
+    title: 'Event Photos',
+    subtitle: 'Thanks for pulling up. Enter your info to get your event photos.',
+    imageAlt: 'Event highlight',
+    gateTitle: "You're on the list.",
+    gateBody: "We'll send your photos when they're ready.",
     gateSubnote: "We'll keep you posted first.",
   },
   footer: {
@@ -283,12 +291,20 @@ const messagesEs = {
   follow: {
     label: 'Sigue el recorrido',
   },
-  photosPage: {
+  mundial5kPage: {
     title: 'Mundial 5k: SISEPUEDE X HYPHEN',
     subtitle: '¡Gracias por acompañarnos! Ingresa tu información para mantenerte al día con las novedades de SISE.',
     imageAlt: 'Momento destacado del evento',
     gateTitle: 'Ya estás en la lista.',
     gateBody: 'Gracias por acompañarnos. Mantente al día con las novedades de SISE.',
+    gateSubnote: 'Te avisamos primero.',
+  },
+  photosPage: {
+    title: 'Fotos del evento',
+    subtitle: 'Gracias por acompañarnos. Ingresa tu información para recibir tus fotos del evento.',
+    imageAlt: 'Momento destacado del evento',
+    gateTitle: 'Ya estás en la lista.',
+    gateBody: 'Te enviaremos las fotos cuando estén listas.',
     gateSubnote: 'Te avisamos primero.',
   },
   footer: {

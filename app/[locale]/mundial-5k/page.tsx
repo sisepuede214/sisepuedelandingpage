@@ -16,7 +16,7 @@ function InstagramIcon() {
 
 type PageProps = { params: Promise<{ locale: string }> };
 
-export default async function PhotosPage({ params }: PageProps) {
+export default async function Mundial5kPage({ params }: PageProps) {
   const { locale: raw } = await params;
   const m = getMessages(raw);
 
@@ -28,7 +28,7 @@ export default async function PhotosPage({ params }: PageProps) {
           <TrackedLink
             href="https://www.instagram.com/sisepuede1.0/"
             eventName="cta_instagram_clicked"
-            eventProperties={{ cta_location: 'photos_header_nav' }}
+            eventProperties={{ cta_location: 'mundial_5k_header_nav' }}
             target="_blank"
             rel="noopener noreferrer"
             ariaLabel={m.nav.instagramAria}
@@ -54,10 +54,10 @@ export default async function PhotosPage({ params }: PageProps) {
             className="text-4xl sm:text-5xl uppercase tracking-wide leading-tight"
             style={{ fontFamily: 'var(--font-display)', color: 'var(--foreground)' }}
           >
-            {m.photosPage.title}
+            {m.mundial5kPage.title}
           </h1>
           <p className="text-sm sm:text-base leading-relaxed max-w-md" style={{ color: 'var(--muted)' }}>
-            {m.photosPage.subtitle}
+            {m.mundial5kPage.subtitle}
           </p>
         </div>
 
@@ -67,13 +67,25 @@ export default async function PhotosPage({ params }: PageProps) {
             style={{ background: 'var(--surface)' }}
           >
             <SignupGate
+              source="mundial_5K"
+              signupPhase="event_day"
               gateCopy={{
-                title: m.photosPage.gateTitle,
-                body: m.photosPage.gateBody,
-                subnote: m.photosPage.gateSubnote,
+                title: m.mundial5kPage.gateTitle,
+                body: m.mundial5kPage.gateBody,
+                subnote: m.mundial5kPage.gateSubnote,
               }}
             />
           </div>
+
+          <figure className="relative aspect-4/5 w-full overflow-hidden rounded-lg" style={{ background: 'var(--surface)' }}>
+            <Image
+              src="/photoslandingpage/Emanuel_Flag.jpg"
+              alt={m.mundial5kPage.imageAlt}
+              fill
+              className="object-cover"
+              sizes="(max-width: 896px) 100vw, 896px"
+            />
+          </figure>
         </section>
       </main>
     </div>
