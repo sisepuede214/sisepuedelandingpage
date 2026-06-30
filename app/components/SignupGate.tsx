@@ -16,7 +16,7 @@ type SignupGateProps = {
   signupPhase?: string;
   gateCopy?: {
     title: string;
-    body: string;
+    body?: string;
     subnote: string;
   };
 };
@@ -114,9 +114,11 @@ export function SignupGate({ source, signupPhase, gateCopy }: SignupGateProps = 
         {gate.title}
       </p>
       <div className="flex flex-col gap-2">
-        <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground)' }}>
-          {gate.body}
-        </p>
+        {gate.body ? (
+          <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground)' }}>
+            {gate.body}
+          </p>
+        ) : null}
         <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--muted)' }}>
           {gate.subnote}
         </p>

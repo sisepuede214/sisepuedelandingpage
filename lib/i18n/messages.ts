@@ -65,10 +65,10 @@ const messagesEn = {
   },
   photosPage: {
     title: 'La Bandera Austin',
-    subtitle: 'Thanks for joining us! Enter your info for event photos and updates.',
+    subtitle:
+      'Thanks for joining us! Enter your info for future events, exclusive updates, and special announcements as we gear up for the launch of our new hydration drink.',
     imageAlt: 'La Bandera event highlight',
     gateTitle: "You're on the list.",
-    gateBody: "We'll send your photos when they're ready.",
     gateSubnote: "We'll keep you posted first.",
   },
   footer: {
@@ -301,10 +301,10 @@ const messagesEs = {
   },
   photosPage: {
     title: 'La Bandera Austin',
-    subtitle: '¡Gracias por acompañarnos! Ingresa tu información para fotos y novedades del evento.',
+    subtitle:
+      '¡Gracias por acompañarnos! Ingresa tu información para futuros eventos, actualizaciones exclusivas y anuncios especiales mientras nos preparamos para el lanzamiento de nuestra nueva bebida hidratante.',
     imageAlt: 'Momento destacado de La Bandera',
     gateTitle: 'Ya estás en la lista.',
-    gateBody: 'Te enviaremos las fotos cuando estén listas.',
     gateSubnote: 'Te avisamos primero.',
   },
   footer: {

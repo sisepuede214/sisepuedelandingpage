@@ -71,7 +71,6 @@ export default async function PhotosPage({ params }: PageProps) {
               signupPhase="post_event"
               gateCopy={{
                 title: m.photosPage.gateTitle,
-                body: m.photosPage.gateBody,
                 subnote: m.photosPage.gateSubnote,
               }}
             />
