@@ -128,7 +128,7 @@ PostHog: **`founders_page_visit`** (when analytics consent is on).
 | `KLAVIYO_LIST_ID_POSTEVENT` | Preferred target list for new opt-ins. |
 | `KLAVIYO_LIST_ID`           | Fallback list for subscriptions if post-event list is unset. |
 | `KLAVIYO_LIST_ID_PHOTOS`    | List for **`/[locale]/mundial-5k`** signups (`source=mundial_5K`). Defaults to `Snqf86` if unset. |
-| `KLAVIYO_LIST_ID_LA_BANDERA_ATX` | List for **`/[locale]/photos`** signups (`source=la_bandera_austin`). Defaults to `UhQQe5` if unset. |
+| `KLAVIYO_LIST_ID_LA_BANDERA_ATX` | List for **`/[locale]/photos`** signups (`source=la_bandera_austin`). Defaults to `UZfuPL` if unset. |
 
 See **`.env.example`** in the repo for placeholders.
 

@@ -15,7 +15,7 @@ function resolveSubscribeListId(source: string, defaultListId: string): string {
     return process.env.KLAVIYO_LIST_ID_PHOTOS ?? 'Snqf86';
   }
   if (source === LA_BANDERA_AUSTIN_SOURCE) {
-    return process.env.KLAVIYO_LIST_ID_LA_BANDERA_ATX ?? 'UhQQe5';
+    return process.env.KLAVIYO_LIST_ID_LA_BANDERA_ATX ?? 'UZfuPL';
   }
   return defaultListId;
 }

@@ -68,7 +68,7 @@ export default async function PhotosPage({ params }: PageProps) {
           >
             <SignupGate
               source="la_bandera_austin"
-              signupPhase="event_day"
+              signupPhase="post_event"
               gateCopy={{
                 title: m.photosPage.gateTitle,
                 body: m.photosPage.gateBody,
