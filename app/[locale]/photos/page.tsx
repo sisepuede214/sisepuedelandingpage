@@ -76,14 +76,30 @@ export default async function PhotosPage({ params }: PageProps) {
             />
           </div>
 
-          <figure className="relative aspect-4/5 w-full overflow-hidden rounded-lg" style={{ background: 'var(--surface)' }}>
-            <Image
-              src="/photoslandingpage/Emanuel_Flag.jpg"
-              alt={m.photosPage.imageAlt}
-              fill
-              className="object-cover"
-              sizes="(max-width: 896px) 100vw, 896px"
-            />
+          <figure className="flex flex-col gap-2 w-full">
+            <div className="relative aspect-4/5 w-full overflow-hidden rounded-lg" style={{ background: 'var(--surface)' }}>
+              <Image
+                src="/photoslandingpage/LaBandera-ATX.jpg"
+                alt={m.photosPage.imageAlt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 896px) 100vw, 896px"
+              />
+            </div>
+            <figcaption className="text-center text-xs" style={{ color: 'var(--muted)' }}>
+              {m.photosPage.photoCreditLabel}{' '}
+              <TrackedLink
+                href="https://www.instagram.com/chotosphotos/"
+                eventName="cta_instagram_clicked"
+                eventProperties={{ cta_location: 'photos_page_credit' }}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-opacity hover:opacity-70"
+                style={{ color: 'var(--muted)' }}
+              >
+                {m.photosPage.photoCreditHandle}
+              </TrackedLink>
+            </figcaption>
           </figure>
         </section>
       </main>

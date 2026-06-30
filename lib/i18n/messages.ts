@@ -68,6 +68,8 @@ const messagesEn = {
     subtitle:
       'Thanks for joining us! Enter your info for future events, exclusive updates, and special announcements as we gear up for the launch of our new hydration drink.',
     imageAlt: 'La Bandera event highlight',
+    photoCreditLabel: 'Photo:',
+    photoCreditHandle: '@chotosphotos',
     gateTitle: "You're on the list.",
     gateSubnote: "We'll keep you posted first.",
   },
@@ -304,6 +306,8 @@ const messagesEs = {
     subtitle:
       '¡Gracias por acompañarnos! Ingresa tu información para futuros eventos, actualizaciones exclusivas y anuncios especiales mientras nos preparamos para el lanzamiento de nuestra nueva bebida hidratante.',
     imageAlt: 'Momento destacado de La Bandera',
+    photoCreditLabel: 'Foto:',
+    photoCreditHandle: '@chotosphotos',
     gateTitle: 'Ya estás en la lista.',
     gateSubnote: 'Te avisamos primero.',
   },
