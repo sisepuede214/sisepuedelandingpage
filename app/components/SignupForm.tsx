@@ -10,9 +10,11 @@ type FormState = 'idle' | 'loading' | 'success' | 'error';
 type SignupFormProps = {
   source?: string;
   signupPhase?: string;
+  successTitle?: string;
+  intro?: string;
 };
 
-export function SignupForm({ source, signupPhase }: SignupFormProps = {}) {
+export function SignupForm({ source, signupPhase, successTitle, intro }: SignupFormProps = {}) {
   const { messages: m, locale } = useLocaleMessages();
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -142,7 +144,7 @@ export function SignupForm({ source, signupPhase }: SignupFormProps = {}) {
           className="text-4xl uppercase tracking-wide"
           style={{ fontFamily: 'var(--font-display)', color: 'var(--accent)' }}
         >
-          {m.signupForm.successTitle}
+          {successTitle ?? m.signupForm.successTitle}
         </p>
 
         <div className="flex flex-col gap-2">
@@ -185,6 +187,11 @@ export function SignupForm({ source, signupPhase }: SignupFormProps = {}) {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-md">
+      {intro ? (
+        <p className="text-sm sm:text-base leading-relaxed text-center mb-2" style={{ color: 'var(--muted)' }}>
+          {intro}
+        </p>
+      ) : null}
       <div className="flex flex-col gap-1.5">
         <label htmlFor="email" className="text-xs font-medium uppercase tracking-widest" style={{ color: 'var(--muted)' }}>
           {m.signupForm.emailLabel}

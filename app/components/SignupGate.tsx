@@ -14,6 +14,7 @@ import { useLocaleMessages } from './LocaleProvider';
 type SignupGateProps = {
   source?: string;
   signupPhase?: string;
+  intro?: string;
   gateCopy?: {
     title: string;
     body?: string;
@@ -21,7 +22,7 @@ type SignupGateProps = {
   };
 };
 
-export function SignupGate({ source, signupPhase, gateCopy }: SignupGateProps = {}) {
+export function SignupGate({ source, signupPhase, intro, gateCopy }: SignupGateProps = {}) {
   const { messages: m, locale } = useLocaleMessages();
   const [storedIdentity, setStoredIdentity] = useState<StoredSignupIdentity | null | undefined>(
     undefined,
@@ -98,11 +99,25 @@ export function SignupGate({ source, signupPhase, gateCopy }: SignupGateProps = 
   const gate = gateCopy ?? m.signupGate;
 
   if (storedIdentity === undefined) {
-    return <SignupForm source={source} signupPhase={signupPhase} />;
+    return (
+      <SignupForm
+        source={source}
+        signupPhase={signupPhase}
+        successTitle={gateCopy?.title}
+        intro={intro}
+      />
+    );
   }
 
   if (!storedIdentity) {
-    return <SignupForm source={source} signupPhase={signupPhase} />;
+    return (
+      <SignupForm
+        source={source}
+        signupPhase={signupPhase}
+        successTitle={gateCopy?.title}
+        intro={intro}
+      />
+    );
   }
 
   return (

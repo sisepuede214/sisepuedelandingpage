@@ -64,13 +64,13 @@ const messagesEn = {
     gateSubnote: "We'll keep you posted first.",
   },
   photosPage: {
-    title: 'La Bandera Austin',
+    title: 'La Bandera San Antonio',
     subtitle:
-      'Thanks for joining us! Enter your info for future events, exclusive updates, and special announcements as we gear up for the launch of our new hydration drink.',
+      'Check in below. Enter your info for future events, exclusive updates, and special announcements as we gear up for the launch of our new hydration drink.',
     imageAlt: 'La Bandera event highlight',
     photoCreditLabel: 'Photo:',
     photoCreditHandle: '@chotosphotos',
-    gateTitle: "You're on the list.",
+    gateTitle: "You're checked in.",
     gateSubnote: "We'll keep you posted first.",
   },
   footer: {
@@ -302,13 +302,13 @@ const messagesEs = {
     gateSubnote: 'Te avisamos primero.',
   },
   photosPage: {
-    title: 'La Bandera Austin',
+    title: 'La Bandera San Antonio',
     subtitle:
-      '¡Gracias por acompañarnos! Ingresa tu información para futuros eventos, actualizaciones exclusivas y anuncios especiales mientras nos preparamos para el lanzamiento de nuestra nueva bebida hidratante.',
+      'Haz tu check-in abajo. Ingresa tu información para futuros eventos, actualizaciones exclusivas y anuncios especiales mientras nos preparamos para el lanzamiento de nuestra nueva bebida hidratante.',
     imageAlt: 'Momento destacado de La Bandera',
     photoCreditLabel: 'Foto:',
     photoCreditHandle: '@chotosphotos',
-    gateTitle: 'Ya estás en la lista.',
+    gateTitle: 'Ya hiciste check-in.',
     gateSubnote: 'Te avisamos primero.',
   },
   footer: {

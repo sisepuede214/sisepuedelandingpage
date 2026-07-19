@@ -56,9 +56,6 @@ export default async function PhotosPage({ params }: PageProps) {
           >
             {m.photosPage.title}
           </h1>
-          <p className="text-sm sm:text-base leading-relaxed max-w-md" style={{ color: 'var(--muted)' }}>
-            {m.photosPage.subtitle}
-          </p>
         </div>
 
         <section className="w-full max-w-4xl mt-10 flex flex-col items-stretch gap-6">
@@ -67,8 +64,9 @@ export default async function PhotosPage({ params }: PageProps) {
             style={{ background: 'var(--surface)' }}
           >
             <SignupGate
-              source="la_bandera_austin"
-              signupPhase="post_event"
+              source="la_bandera_san_antonio"
+              signupPhase="event_day"
+              intro={m.photosPage.subtitle}
               gateCopy={{
                 title: m.photosPage.gateTitle,
                 subnote: m.photosPage.gateSubnote,
@@ -79,7 +77,7 @@ export default async function PhotosPage({ params }: PageProps) {
           <figure className="flex flex-col gap-2 w-full">
             <div className="relative aspect-4/5 w-full overflow-hidden rounded-lg" style={{ background: 'var(--surface)' }}>
               <Image
-                src="/photoslandingpage/LaBandera-ATX.jpg"
+                src="/photoslandingpage/LaBAnderaRecap.jpg"
                 alt={m.photosPage.imageAlt}
                 fill
                 className="object-cover"
