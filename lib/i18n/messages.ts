@@ -64,10 +64,10 @@ const messagesEn = {
     gateSubnote: "We'll keep you posted first.",
   },
   photosPage: {
-    title: 'La Bandera San Antonio',
+    title: 'La Bandera Houston',
     subtitle:
       'Check in below. Enter your info for future events, exclusive updates, and special announcements as we gear up for the launch of our new hydration drink.',
-    imageAlt: 'La Bandera event highlight',
+    imageAlt: 'La Bandera Houston event highlight',
     photoCreditLabel: 'Photo:',
     photoCreditHandle: '@chotosphotos',
     gateTitle: "You're checked in.",
@@ -302,10 +302,10 @@ const messagesEs = {
     gateSubnote: 'Te avisamos primero.',
   },
   photosPage: {
-    title: 'La Bandera San Antonio',
+    title: 'La Bandera Houston',
     subtitle:
       'Haz tu check-in abajo. Ingresa tu información para futuros eventos, actualizaciones exclusivas y anuncios especiales mientras nos preparamos para el lanzamiento de nuestra nueva bebida hidratante.',
-    imageAlt: 'Momento destacado de La Bandera',
+    imageAlt: 'Momento destacado de La Bandera Houston',
     photoCreditLabel: 'Foto:',
     photoCreditHandle: '@chotosphotos',
     gateTitle: 'Ya hiciste check-in.',

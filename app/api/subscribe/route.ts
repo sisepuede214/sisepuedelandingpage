@@ -8,14 +8,14 @@ const DEFAULT_SOURCE = 'landing_page';
 const DEFAULT_SIGNUP_PHASE = 'pre_event';
 const TAG_MAX_LEN = 128;
 const MUNDIAL_5K_SOURCE = 'mundial_5K';
-const LA_BANDERA_SAN_ANTONIO_SOURCE = 'la_bandera_san_antonio';
+const LA_BANDERA_HOUSTON_SOURCE = 'la_bandera_houston';
 
 function resolveSubscribeListId(source: string, defaultListId: string): string {
   if (source === MUNDIAL_5K_SOURCE) {
     return process.env.KLAVIYO_LIST_ID_PHOTOS ?? 'Snqf86';
   }
-  if (source === LA_BANDERA_SAN_ANTONIO_SOURCE) {
-    return process.env.KLAVIYO_LIST_ID_LA_BANDERA_SA ?? 'Sr3Pnx';
+  if (source === LA_BANDERA_HOUSTON_SOURCE) {
+    return process.env.KLAVIYO_LIST_ID_LA_BANDERA_HTX ?? 'VD2DeL';
   }
   return defaultListId;
 }

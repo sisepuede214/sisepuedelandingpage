@@ -64,7 +64,7 @@ export default async function PhotosPage({ params }: PageProps) {
             style={{ background: 'var(--surface)' }}
           >
             <SignupGate
-              source="la_bandera_san_antonio"
+              source="la_bandera_houston"
               signupPhase="event_day"
               intro={m.photosPage.subtitle}
               gateCopy={{
