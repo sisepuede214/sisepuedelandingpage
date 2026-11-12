@@ -2,19 +2,23 @@ import Image from 'next/image';
 
 type ProductTubTeaseProps = {
   imageAlt: string;
-  variant: 'hero' | 'section';
+  variant: 'hero' | 'section' | 'compact';
 };
 
 export function ProductTubTease({ imageAlt, variant }: ProductTubTeaseProps) {
   const glitchClassName =
     variant === 'hero'
       ? 'product-tease-glitch relative w-full max-w-none sm:max-w-[340px] md:max-w-[420px] lg:max-w-[500px] mx-auto overflow-hidden rounded-none sm:rounded-lg aspect-4/5'
-      : 'product-tease-glitch relative w-full max-w-md mx-auto overflow-hidden rounded-lg aspect-4/5';
+      : variant === 'compact'
+        ? 'product-tease-glitch relative w-52 sm:w-60 mx-auto overflow-hidden aspect-4/5'
+        : 'product-tease-glitch relative w-full max-w-md mx-auto overflow-hidden rounded-lg aspect-4/5';
 
   const sizes =
     variant === 'hero'
       ? '(max-width: 640px) 100vw, (max-width: 768px) 340px, (max-width: 1024px) 420px, 500px'
-      : '(max-width: 768px) 100vw, 48rem';
+      : variant === 'compact'
+        ? '240px'
+        : '(max-width: 768px) 100vw, 48rem';
 
   const figure = (
     <figure className="w-full flex flex-col items-center gap-4">
@@ -25,7 +29,7 @@ export function ProductTubTease({ imageAlt, variant }: ProductTubTeaseProps) {
           fill
           className="product-tease-base object-contain"
           sizes={sizes}
-          priority={variant === 'hero'}
+          priority={variant === 'hero' || variant === 'compact'}
         />
         <Image
           src="/MOCKUP.png"
@@ -47,6 +51,24 @@ export function ProductTubTease({ imageAlt, variant }: ProductTubTeaseProps) {
       <figcaption />
     </figure>
   );
+
+  if (variant === 'compact') {
+    return (
+      <div
+        className="w-full max-w-4xl flex flex-col items-center mt-6 py-6"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.72)), url('/SISELOGOblack.png')",
+          backgroundRepeat: 'repeat, repeat',
+          backgroundSize: 'auto, 190px auto',
+          backgroundPosition: '0 0, 0 20px',
+          backgroundBlendMode: 'normal, multiply',
+        }}
+      >
+        {figure}
+      </div>
+    );
+  }
 
   if (variant === 'hero') {
     return (

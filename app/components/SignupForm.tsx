@@ -4,17 +4,35 @@ import { useState, useRef } from 'react';
 import posthog from 'posthog-js';
 import { getSignupTrackingContext, writeStoredSignupIdentity } from './signupTracking';
 import { useLocaleMessages } from './LocaleProvider';
+import { TrackedLink } from './TrackedLink';
 
 type FormState = 'idle' | 'loading' | 'success' | 'error';
+
+type SignupShop = {
+  href: string;
+  label: string;
+  cta: string;
+};
 
 type SignupFormProps = {
   source?: string;
   signupPhase?: string;
   successTitle?: string;
+  successNote?: string;
   intro?: string;
+  submitLabel?: string;
+  shop?: SignupShop;
 };
 
-export function SignupForm({ source, signupPhase, successTitle, intro }: SignupFormProps = {}) {
+export function SignupForm({
+  source,
+  signupPhase,
+  successTitle,
+  successNote,
+  intro,
+  submitLabel,
+  shop,
+}: SignupFormProps = {}) {
   const { messages: m, locale } = useLocaleMessages();
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -135,6 +153,35 @@ export function SignupForm({ source, signupPhase, successTitle, intro }: SignupF
       setErrorMsg(message);
       setFormState('error');
     }
+  }
+
+  if (formState === 'success' && shop) {
+    return (
+      <div className="flex flex-col items-center text-center gap-6 py-8 w-full max-w-md">
+        <p
+          className="text-4xl uppercase tracking-wide"
+          style={{ fontFamily: 'var(--font-display)', color: 'var(--accent)' }}
+        >
+          {successTitle ?? m.signupForm.successTitle}
+        </p>
+        {successNote ? (
+          <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--muted)' }}>
+            {successNote}
+          </p>
+        ) : null}
+        <TrackedLink
+          href={shop.href}
+          eventName="cta_shop_clicked"
+          eventProperties={{ cta_location: 'signup_success' }}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-accent inline-flex items-center justify-center gap-2 rounded-lg px-8 py-3.5 text-sm font-semibold uppercase tracking-wide"
+        >
+          {shop.cta}
+          <span>→</span>
+        </TrackedLink>
+      </div>
+    );
   }
 
   if (formState === 'success') {
@@ -308,8 +355,21 @@ export function SignupForm({ source, signupPhase, successTitle, intro }: SignupF
           if (formState !== 'loading') e.currentTarget.style.background = 'var(--accent)';
         }}
       >
-        {formState === 'loading' ? m.signupForm.sending : m.signupForm.submit}
+        {formState === 'loading' ? m.signupForm.sending : (submitLabel ?? m.signupForm.submit)}
       </button>
+      {shop ? (
+        <TrackedLink
+          href={shop.href}
+          eventName="cta_shop_clicked"
+          eventProperties={{ cta_location: 'signup_form' }}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="self-center text-sm font-medium transition-opacity hover:opacity-70"
+          style={{ color: 'var(--highlight)' }}
+        >
+          {shop.label}
+        </TrackedLink>
+      ) : null}
     </form>
   );
 }

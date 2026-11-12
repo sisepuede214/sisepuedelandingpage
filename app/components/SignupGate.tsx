@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import posthog from 'posthog-js';
 import { SignupForm } from './SignupForm';
+import { TrackedLink } from './TrackedLink';
 import {
   getSignupTrackingContext,
   readStoredSignupIdentity,
@@ -15,6 +16,12 @@ type SignupGateProps = {
   source?: string;
   signupPhase?: string;
   intro?: string;
+  submitLabel?: string;
+  shop?: {
+    href: string;
+    label: string;
+    cta: string;
+  };
   gateCopy?: {
     title: string;
     body?: string;
@@ -22,7 +29,14 @@ type SignupGateProps = {
   };
 };
 
-export function SignupGate({ source, signupPhase, intro, gateCopy }: SignupGateProps = {}) {
+export function SignupGate({
+  source,
+  signupPhase,
+  intro,
+  submitLabel,
+  shop,
+  gateCopy,
+}: SignupGateProps = {}) {
   const { messages: m, locale } = useLocaleMessages();
   const [storedIdentity, setStoredIdentity] = useState<StoredSignupIdentity | null | undefined>(
     undefined,
@@ -104,7 +118,10 @@ export function SignupGate({ source, signupPhase, intro, gateCopy }: SignupGateP
         source={source}
         signupPhase={signupPhase}
         successTitle={gateCopy?.title}
+        successNote={gateCopy?.subnote}
         intro={intro}
+        submitLabel={submitLabel}
+        shop={shop}
       />
     );
   }
@@ -115,7 +132,10 @@ export function SignupGate({ source, signupPhase, intro, gateCopy }: SignupGateP
         source={source}
         signupPhase={signupPhase}
         successTitle={gateCopy?.title}
+        successNote={gateCopy?.subnote}
         intro={intro}
+        submitLabel={submitLabel}
+        shop={shop}
       />
     );
   }
@@ -138,6 +158,19 @@ export function SignupGate({ source, signupPhase, intro, gateCopy }: SignupGateP
           {gate.subnote}
         </p>
       </div>
+      {shop ? (
+        <TrackedLink
+          href={shop.href}
+          eventName="cta_shop_clicked"
+          eventProperties={{ cta_location: 'signup_returning' }}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-accent inline-flex items-center justify-center gap-2 rounded-lg px-8 py-3.5 text-sm font-semibold uppercase tracking-wide"
+        >
+          {shop.cta}
+          <span>→</span>
+        </TrackedLink>
+      ) : null}
       {/* <a
         href="https://www.instagram.com/sisepuede1.0/"
         target="_blank"

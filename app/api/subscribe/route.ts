@@ -9,6 +9,7 @@ const DEFAULT_SIGNUP_PHASE = 'pre_event';
 const TAG_MAX_LEN = 128;
 const MUNDIAL_5K_SOURCE = 'mundial_5K';
 const LA_BANDERA_HOUSTON_SOURCE = 'la_bandera_houston';
+const RUN_CLUB_214_SOURCE = '214runclub';
 
 function resolveSubscribeListId(source: string, defaultListId: string): string {
   if (source === MUNDIAL_5K_SOURCE) {
@@ -16,6 +17,9 @@ function resolveSubscribeListId(source: string, defaultListId: string): string {
   }
   if (source === LA_BANDERA_HOUSTON_SOURCE) {
     return process.env.KLAVIYO_LIST_ID_LA_BANDERA_HTX ?? 'VD2DeL';
+  }
+  if (source === RUN_CLUB_214_SOURCE) {
+    return process.env.KLAVIYO_LIST_ID_214RUNCLUB ?? 'WSxxbJ';
   }
   return defaultListId;
 }
@@ -255,7 +259,7 @@ async function upsertProfile(
 async function subscribeProfilesToMarketing(
   email: string,
   listId: string,
-  options: { phone?: string; smsOptIn: boolean },
+  options: { phone?: string; smsOptIn: boolean; customSource?: string },
 ) {
   const serverSafetyBackdateMs = 60_000;
   const now = new Date(Date.now() - serverSafetyBackdateMs);
@@ -294,7 +298,7 @@ async function subscribeProfilesToMarketing(
     data: {
       type: 'profile-subscription-bulk-create-job',
       attributes: {
-        custom_source: 'sisepuede_landing',
+        custom_source: options.customSource || 'sisepuede_landing',
         profiles: {
           data: [
             {
@@ -372,6 +376,7 @@ export async function POST(req: NextRequest) {
     await subscribeProfilesToMarketing(email, listId, {
       phone: phoneForKlaviyo,
       smsOptIn,
+      customSource: properties.source === RUN_CLUB_214_SOURCE ? RUN_CLUB_214_SOURCE : undefined,
     });
     await createTouchpointEvent({
       email,

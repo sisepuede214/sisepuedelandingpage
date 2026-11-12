@@ -66,12 +66,15 @@ const messagesEn = {
   photosPage: {
     title: 'La Bandera Houston',
     subtitle:
-      'Check in below. Enter your info for future events, exclusive updates, and special announcements as we gear up for the launch of our new hydration drink.',
+      'Tap in for the next runs, drops, and first word when we show up. SISE is available now.',
     imageAlt: 'La Bandera Houston event highlight',
     photoCreditLabel: 'Photo:',
     photoCreditHandle: '@chotosphotos',
-    gateTitle: "You're checked in.",
+    gateTitle: "You're in.",
     gateSubnote: "We'll keep you posted first.",
+    cta: 'TAP IN',
+    shopLink: 'Shop SISE',
+    shopCta: 'Shop SISE',
   },
   footer: {
     legal:
@@ -304,12 +307,15 @@ const messagesEs = {
   photosPage: {
     title: 'La Bandera Houston',
     subtitle:
-      'Haz tu check-in abajo. Ingresa tu información para futuros eventos, actualizaciones exclusivas y anuncios especiales mientras nos preparamos para el lanzamiento de nuestra nueva bebida hidratante.',
+      'Conéctate para las próximas carreras, los lanzamientos y para enterarte primero cuando aparezcamos. SISE ya está disponible.',
     imageAlt: 'Momento destacado de La Bandera Houston',
     photoCreditLabel: 'Foto:',
     photoCreditHandle: '@chotosphotos',
-    gateTitle: 'Ya hiciste check-in.',
+    gateTitle: 'Ya estás dentro.',
     gateSubnote: 'Te avisamos primero.',
+    cta: 'TAP IN',
+    shopLink: 'Compra SISE',
+    shopCta: 'Compra SISE',
   },
   footer: {
     legal:

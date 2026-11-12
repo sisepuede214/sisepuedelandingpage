@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { ProductTubTease } from '@/app/components/ProductTubTease';
 import { SignupGate } from '@/app/components/SignupGate';
 import { LanguageToggle } from '@/app/components/LanguageToggle';
 import { TrackedLink } from '@/app/components/TrackedLink';
@@ -13,6 +14,9 @@ function InstagramIcon() {
     </svg>
   );
 }
+
+const SHOP_URL =
+  'https://sisepuede1.myshopify.com/products/hydration-drink-lime-flavor-si-se?utm_source=qr&utm_medium=popup&utm_campaign=214runclub';
 
 type PageProps = { params: Promise<{ locale: string }> };
 
@@ -41,7 +45,7 @@ export default async function PhotosPage({ params }: PageProps) {
       </nav>
 
       <main className="flex-1 flex flex-col items-center px-6 pt-2 pb-10 w-full">
-        <div className="w-full max-w-xl flex flex-col items-center text-center gap-5">
+        <div className="w-full max-w-xl flex flex-col items-center text-center">
           <Image
             src="/SISELOGOblack.png"
             alt="SISE logo"
@@ -50,55 +54,41 @@ export default async function PhotosPage({ params }: PageProps) {
             className="w-56 sm:w-64 h-auto"
             priority
           />
-          <h1
-            className="text-4xl sm:text-5xl uppercase tracking-wide leading-tight"
-            style={{ fontFamily: 'var(--font-display)', color: 'var(--foreground)' }}
-          >
-            {m.photosPage.title}
-          </h1>
         </div>
 
-        <section className="w-full max-w-4xl mt-10 flex flex-col items-stretch gap-6">
+        <TrackedLink
+          href={SHOP_URL}
+          eventName="cta_shop_clicked"
+          eventProperties={{ cta_location: 'photos_tub' }}
+          target="_blank"
+          rel="noopener noreferrer"
+          ariaLabel={m.photosPage.shopCta}
+          className="block w-full max-w-4xl"
+        >
+          <ProductTubTease variant="compact" imageAlt={m.product.imageAlt} />
+        </TrackedLink>
+
+        <section className="w-full max-w-4xl mt-8 flex flex-col items-stretch gap-6">
           <div
             className="w-full flex flex-col items-center text-center gap-4 py-8 px-6 rounded-lg"
             style={{ background: 'var(--surface)' }}
           >
             <SignupGate
-              source="la_bandera_houston"
+              source="214runclub"
               signupPhase="event_day"
               intro={m.photosPage.subtitle}
+              submitLabel={m.photosPage.cta}
+              shop={{
+                href: SHOP_URL,
+                label: m.photosPage.shopLink,
+                cta: m.photosPage.shopCta,
+              }}
               gateCopy={{
                 title: m.photosPage.gateTitle,
                 subnote: m.photosPage.gateSubnote,
               }}
             />
           </div>
-
-          <figure className="flex flex-col gap-2 w-full">
-            <div className="relative aspect-4/5 w-full overflow-hidden rounded-lg" style={{ background: 'var(--surface)' }}>
-              <Image
-                src="/photoslandingpage/LaBAnderaRecap.jpg"
-                alt={m.photosPage.imageAlt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 896px) 100vw, 896px"
-              />
-            </div>
-            <figcaption className="text-center text-xs" style={{ color: 'var(--muted)' }}>
-              {m.photosPage.photoCreditLabel}{' '}
-              <TrackedLink
-                href="https://www.instagram.com/chotosphotos/"
-                eventName="cta_instagram_clicked"
-                eventProperties={{ cta_location: 'photos_page_credit' }}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-opacity hover:opacity-70"
-                style={{ color: 'var(--muted)' }}
-              >
-                {m.photosPage.photoCreditHandle}
-              </TrackedLink>
-            </figcaption>
-          </figure>
         </section>
       </main>
     </div>
